@@ -23,7 +23,7 @@ public class CoolKidsAppApplication implements CommandLineRunner {
 		repository.deleteAll();
 
 		//Save a couple of users
-		repository.save(new User("Jim", "Smith"));
+		repository.save(new User("Jim", "Smith", "Email@email.com", "True", "Token"));
 		repository.save(new User("Bob", "West"));
 
 		//fetch all users
