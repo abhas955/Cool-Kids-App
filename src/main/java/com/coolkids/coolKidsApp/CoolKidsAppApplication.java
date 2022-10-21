@@ -1,6 +1,8 @@
 package com.coolkids.coolKidsApp;
 
 import com.coolkids.coolKidsApp.UserRepository;
+import com.mongodb.client.model.changestream.TruncatedArray;
+
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,8 +25,7 @@ public class CoolKidsAppApplication implements CommandLineRunner {
 		repository.deleteAll();
 
 		//Save a couple of users
-		repository.save(new User("Jim", "Smith", "Email@email.com", "True", "Token"));
-		repository.save(new User("Bob", "West"));
+		repository.save(new User("1", "Jim", "Smith", "Email@email.com", true, "Token", "111-111-1111", true, "http://stackoverflow.com", "Password", "Password Reset", 1/1/1900, "Admin", "123 MyAddress", "Admin", "StaffPosition", "Read/Write/Delete", 1/1/1900, 1/2/1900));
 
 		//fetch all users
 		System.out.println("Users found with findAll():");
