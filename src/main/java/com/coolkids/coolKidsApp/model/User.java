@@ -1,4 +1,4 @@
-package com.coolkids.coolKidsApp;
+package com.coolkids.coolKidsApp.model;
 
 import org.springframework.data.annotation.Id;
 
