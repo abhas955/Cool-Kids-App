@@ -13,6 +13,8 @@ import org.springframework.transaction.annotation.Transactional;
 public interface UserRepository extends MongoRepository<User, String> {
 
     Optional<User> findByEmail(String email);
+//    public User findByEmail(String email);
+
 
     public User findByFirstName(String firstName);
 

@@ -13,8 +13,7 @@ import org.springframework.stereotype.Service;
 @AllArgsConstructor
 public class UserService implements UserDetailsService {
 
-    private final static String USER_NOT_FOUND =
-            "user with email %s not found";
+    private final static String USER_NOT_FOUND = "user with email %s not found";
     private  final UserRepository userRepository;
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
@@ -39,6 +38,6 @@ public class UserService implements UserDetailsService {
        userRepository.save(user);
 
        //TODO: Send confirmation token
-        return "";
+        return "register_success";
     }
 }
