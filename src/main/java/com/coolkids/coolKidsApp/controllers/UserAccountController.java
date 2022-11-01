@@ -28,13 +28,13 @@ public class UserAccountController {
         return registrationService.register(request);
     }
 
-    @GetMapping("/login")
-    public String listUsers(Model model){
-        Optional<User> user = userRepository.findByEmail("email");
-
-        model.addAttribute("firstName", user);
-        return "successfully logged in";
-    }
+//    @GetMapping("/login")
+//    public String listUsers(Model model){
+//        Optional<User> user = userRepository.findByEmail("email");
+//
+//        model.addAttribute("firstName", user);
+//        return "successfully logged in";
+//    }
 
     @GetMapping("/users")
     public ResponseEntity<UserListDTO> getAllUsers(){
