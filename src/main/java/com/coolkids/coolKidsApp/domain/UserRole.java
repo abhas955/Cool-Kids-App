@@ -1,4 +1,4 @@
-package com.coolkids.coolKidsApp.model;
+package com.coolkids.coolKidsApp.domain;
 
 public enum UserRole {
     USER,

@@ -1,12 +1,11 @@
 package com.coolkids.coolKidsApp.registration.token;
 
-import com.coolkids.coolKidsApp.model.User;
+import com.coolkids.coolKidsApp.domain.User;
 import com.mongodb.lang.NonNull;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.data.mongodb.core.mapping.DBRef;
-import org.springframework.data.mongodb.core.mapping.Field;
 
 import java.time.LocalDateTime;
 

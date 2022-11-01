@@ -1,10 +1,6 @@
-package com.coolkids.coolKidsApp.model;
+package com.coolkids.coolKidsApp.domain;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.IndexDirection;
 import org.springframework.data.mongodb.core.index.Indexed;
@@ -15,11 +11,13 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import java.net.URL;
+import java.time.LocalDate;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Date;
 
+
+@Data
 @Getter
 @Setter
 @EqualsAndHashCode
@@ -35,7 +33,9 @@ public class User implements UserDetails {
     private String firstName;
     private String lastName;
     private String email;
-//    private Boolean emailVerified;
+    private String birthdate;
+
+    //    private Boolean emailVerified;
 //    private String emailVerifyToken;
     private String phoneNumber;
 //    private Boolean phoneNumberVerified;
@@ -47,7 +47,7 @@ public class User implements UserDetails {
     @Field(targetType = FieldType.STRING)
     private UserRole userRole;
 
-    private String mailingAddress;
+    private String address;
     private Boolean locked = false;
     private Boolean enabled = true;
 //    private enum Role {
@@ -67,15 +67,21 @@ public class User implements UserDetails {
     private Date accountCreatedDate;
     private Date accountUpdatedDate;
 
-    public User(String firstName, String lastName, String email,
-                String password, UserRole userRole) {
+    public User(String firstName, String lastName, String phoneNumber, String email,
+                String birthdate,String address, String password, UserRole userRole) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
+        this.phoneNumber = phoneNumber;
+        this.birthdate = birthdate;
+        this.address = address;
         this.password = password;
         this.userRole = userRole;
 
     }
+
+
+
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
