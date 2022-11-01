@@ -1,8 +1,9 @@
 package com.coolkids.coolKidsApp.services;
 
+import com.coolkids.coolKidsApp.api.v1.model.UserDTO;
 import com.coolkids.coolKidsApp.controllers.RegistrationRequest;
-import com.coolkids.coolKidsApp.model.User;
-import com.coolkids.coolKidsApp.model.UserRole;
+import com.coolkids.coolKidsApp.domain.User;
+import com.coolkids.coolKidsApp.domain.UserRole;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -10,7 +11,7 @@ import org.springframework.stereotype.Service;
 @AllArgsConstructor
 public class RegistrationService {
 
-    private final UserService userService;
+    private final UserServiceImpl userServiceImpl;
     private EmailValidator emailValidator;
 
     public String register(RegistrationRequest request) {
@@ -20,11 +21,14 @@ public class RegistrationService {
         }
 
 
-        return userService.signUpUser(
+        return userServiceImpl.signUpUser(
                 new User(
                 request.getFirstName(),
                 request.getLastName(),
+                request.getPhoneNumber(),
                 request.getEmail(),
+                request.getBirthdate(),
+                request.getAddress(),
                 request.getPassword(),
                 UserRole.USER
 
