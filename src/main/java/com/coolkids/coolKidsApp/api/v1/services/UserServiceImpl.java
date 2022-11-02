@@ -1,11 +1,10 @@
-package com.coolkids.coolKidsApp.services;
+package com.coolkids.coolKidsApp.api.v1.services;
 
 import com.coolkids.coolKidsApp.api.v1.mapper.UserMapper;
 import com.coolkids.coolKidsApp.api.v1.model.UserDTO;
 import com.coolkids.coolKidsApp.domain.User;
 import com.coolkids.coolKidsApp.repository.UserRepository;
 import lombok.AllArgsConstructor;
-import lombok.Data;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
