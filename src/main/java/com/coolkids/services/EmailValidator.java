@@ -1,4 +1,4 @@
-package com.coolkids.coolKidsApp.api.v1.services;
+package com.coolkids.services;
 
 import org.springframework.stereotype.Service;
 

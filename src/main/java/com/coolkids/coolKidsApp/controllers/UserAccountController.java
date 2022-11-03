@@ -2,18 +2,14 @@ package com.coolkids.coolKidsApp.controllers;
 
 import com.coolkids.coolKidsApp.api.v1.model.UserDTO;
 import com.coolkids.coolKidsApp.api.v1.model.UserListDTO;
-import com.coolkids.coolKidsApp.domain.User;
 import com.coolkids.coolKidsApp.repository.UserRepository;
 
-import com.coolkids.coolKidsApp.api.v1.services.RegistrationService;
-import com.coolkids.coolKidsApp.api.v1.services.UserService;
+import com.coolkids.services.RegistrationService;
+import com.coolkids.services.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.Optional;
 
 @RestController
 @RequestMapping(path = "api/v1/")
@@ -47,6 +43,28 @@ public class UserAccountController {
         return new ResponseEntity<UserDTO>(
                 userService.getUserByLastName(lastName),HttpStatus.OK);
     }
+
+    //Todo: create user endpoint
+
+
+    //Todo: delete user endpoint (by id)
+
+
+    //Todo: get a user by id endpoint
+
+
+    //Todo: update a user (patch request)
+
+
+    //Todo: replace a user (put request ) (not sure if this will be needed)
+
+
+    //Todo: sign up for an event
+
+
+    //Todo: get events that a user signed up for
+
+
 
 
 
