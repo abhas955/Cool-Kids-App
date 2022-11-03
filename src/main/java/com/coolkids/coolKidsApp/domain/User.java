@@ -15,6 +15,7 @@ import java.time.LocalDate;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Date;
+import java.util.Set;
 
 
 @Data
@@ -34,6 +35,7 @@ public class User implements UserDetails {
     private String lastName;
     private String email;
     private String birthdate;
+    private Set<Event> events;
 
     //    private Boolean emailVerified;
 //    private String emailVerifyToken;
