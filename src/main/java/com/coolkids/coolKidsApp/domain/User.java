@@ -67,7 +67,7 @@ public class User implements UserDetails {
     private Date accountUpdatedDate;
 
     public User(String firstName, String lastName, String phoneNumber, String email,
-                String birthdate,String address, String password, UserRole userRole) {
+                String birthdate,String address, String password, UserRole userRole,Set<Event> events) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
@@ -76,7 +76,7 @@ public class User implements UserDetails {
         this.address = address;
         this.password = password;
         this.userRole = userRole;
-
+        this.events = events;
     }
 
 

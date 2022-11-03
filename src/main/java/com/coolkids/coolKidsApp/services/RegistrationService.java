@@ -1,4 +1,4 @@
-package com.coolkids.coolKidsApp.api.v1.services;
+package com.coolkids.coolKidsApp.services;
 
 import com.coolkids.coolKidsApp.controllers.RegistrationRequest;
 import com.coolkids.coolKidsApp.domain.User;
@@ -29,7 +29,8 @@ public class RegistrationService {
                 request.getBirthdate(),
                 request.getAddress(),
                 request.getPassword(),
-                UserRole.USER
+                UserRole.USER,
+                request.getEvents()
 
             )
         );

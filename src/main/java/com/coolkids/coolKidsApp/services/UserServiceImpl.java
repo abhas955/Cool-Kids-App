@@ -1,4 +1,4 @@
-package com.coolkids.coolKidsApp.api.v1.services;
+package com.coolkids.coolKidsApp.services;
 
 import com.coolkids.coolKidsApp.api.v1.mapper.UserMapper;
 import com.coolkids.coolKidsApp.api.v1.model.UserDTO;

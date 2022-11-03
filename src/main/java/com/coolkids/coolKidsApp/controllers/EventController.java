@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping(path = "api/v1/")
 @AllArgsConstructor
 public class EventController {
-
     private final EventService eventService;
 
     @PostMapping("/events") //Getmapping vs Postmapping here?
