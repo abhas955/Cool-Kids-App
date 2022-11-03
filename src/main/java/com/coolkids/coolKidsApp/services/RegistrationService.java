@@ -29,7 +29,8 @@ public class RegistrationService {
                 request.getBirthdate(),
                 request.getAddress(),
                 request.getPassword(),
-                UserRole.USER
+                UserRole.USER,
+                request.getEvents()
 
             )
         );
