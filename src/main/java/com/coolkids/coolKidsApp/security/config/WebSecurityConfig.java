@@ -1,6 +1,6 @@
 package com.coolkids.coolKidsApp.security.config;
 
-import com.coolkids.services.UserServiceImpl;
+import com.coolkids.coolKidsApp.services.UserServiceImpl;
 import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

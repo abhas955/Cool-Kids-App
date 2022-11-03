@@ -14,4 +14,28 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping(path = "api/v1/")
 @AllArgsConstructor
 public class EventController {
+
+    //Todo: list all events
+
+
+
+    //Todo: create event
+
+
+    //Todo: delete event
+
+
+    //Todo: get an event by id
+
+
+    //Todo: update an event (patch)
+
+
+    //Todo: cancel an event
+
+
+    //Todo: get users signed up for an event
+
+
+
 }

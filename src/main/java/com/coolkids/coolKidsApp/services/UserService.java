@@ -1,4 +1,4 @@
-package com.coolkids.services;
+package com.coolkids.coolKidsApp.services;
 
 import com.coolkids.coolKidsApp.api.v1.model.UserDTO;
 import com.coolkids.coolKidsApp.domain.User;
