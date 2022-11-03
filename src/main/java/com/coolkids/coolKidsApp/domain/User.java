@@ -25,7 +25,6 @@ import java.util.Date;
 @Document(collection = "users")
 public class User implements UserDetails {
 
-
     @Id
     private String id;
     @Indexed(unique = true, direction = IndexDirection.DESCENDING, dropDups = true)
