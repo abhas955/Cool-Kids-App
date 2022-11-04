@@ -20,7 +20,11 @@ public class EventController {
     private final EventService eventService;
 
     //Todo: list all events
-
+    @GetMapping("/events")
+    public ResponseEntity<EventListDTO> getAllEvents(){
+        return new ResponseEntity<EventListDTO>(
+                new EventListDTO(eventService.getAllEvents()), HttpStatus.OK);
+    }
 
 
     //Todo: create event
@@ -40,10 +44,6 @@ public class EventController {
 
     //Todo: get users signed up for an event
 
-    @GetMapping("/events")
-    public ResponseEntity<EventListDTO> getAllEvents(){
-        return new ResponseEntity<EventListDTO>(
-                new EventListDTO(eventService.getAllEvents()), HttpStatus.OK);
-    }
+
 
 }
