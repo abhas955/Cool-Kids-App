@@ -22,8 +22,6 @@ public class EventController {
         return new ResponseEntity<EventListDTO>(
                 new EventListDTO(eventService.getAllEvents()), HttpStatus.OK);
     }
-
-
     //Todo: create event
 
 
@@ -40,7 +38,4 @@ public class EventController {
 
 
     //Todo: get users signed up for an event
-
-
-
 }
