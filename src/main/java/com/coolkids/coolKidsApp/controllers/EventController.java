@@ -19,6 +19,27 @@ import org.springframework.web.bind.annotation.*;
 public class EventController {
     private final EventService eventService;
 
+    //Todo: list all events
+
+
+
+    //Todo: create event
+
+
+    //Todo: delete event
+
+
+    //Todo: get an event by id
+
+
+    //Todo: update an event (patch)
+
+
+    //Todo: cancel an event
+
+
+    //Todo: get users signed up for an event
+
     @GetMapping("/events")
     public ResponseEntity<EventListDTO> getAllEvents(){
         return new ResponseEntity<EventListDTO>(
