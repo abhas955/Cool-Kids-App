@@ -166,4 +166,7 @@ public class Event {
     public void setContactPersonEmail(String contactPersonEmail) {
         this.contactPersonEmail = contactPersonEmail;
     }
+
+    public String getEventId() {
+    }
 }
