@@ -8,4 +8,6 @@ import java.util.List;
 public interface EventService {
 
     List<EventDTO> getAllEvents();
+
+    String createEvent(Event event);
 }
