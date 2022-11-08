@@ -2,6 +2,7 @@ package com.coolkids.coolKidsApp.services;
 
 import com.coolkids.coolKidsApp.api.v1.mapper.EventMapper;
 import com.coolkids.coolKidsApp.api.v1.model.EventDTO;
+import com.coolkids.coolKidsApp.domain.Event;
 import com.coolkids.coolKidsApp.repository.EventRepository;
 import com.coolkids.coolKidsApp.services.EventService;
 import lombok.AllArgsConstructor;
@@ -19,10 +20,15 @@ public class EventServiceImpl implements EventService {
     private final EventMapper eventMapper;
 
     @Override
-    public List<EventDTO> getAllEvents() { //TODO: The heck?
-        return eventRepository.findAll() //TODO: The heck?
-                .stream() //TODO: The heck?
-                .map(eventMapper::eventToEventDTO) //TODO: The heck?
-                .collect(Collectors.toList()); //TODO: The heck?
+    public List<EventDTO> getAllEvents() {
+        return eventRepository.findAll()
+                .stream()
+                .map(eventMapper::eventToEventDTO)
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public String createEvent(Event event) {
+        boolean eventExists = eventRepository.findById(event.getEventId()).isPresent();
     }
 }
