@@ -1,15 +1,10 @@
 package com.coolkids.coolKidsApp.services;
 
+import com.coolkids.coolKidsApp.domain.UserRole;
 import org.springframework.stereotype.Service;
 
-import java.util.function.Predicate;
-
 @Service
-public class AdminValidator implements Predicate<String> {
+public class AdminValidator {
 
-    @Override
-    public boolean test(String s) {
-
-        return true;
-    }
+    //TODO: Create this
 }
