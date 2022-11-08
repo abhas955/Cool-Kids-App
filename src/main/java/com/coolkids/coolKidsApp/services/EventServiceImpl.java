@@ -25,4 +25,9 @@ public class EventServiceImpl implements EventService {
                 .map(eventMapper::eventToEventDTO) //TODO: The heck?
                 .collect(Collectors.toList()); //TODO: The heck?
     }
+
+    @Override
+    public EventDTO getEventById(String id) {
+        return null;
+    }
 }
