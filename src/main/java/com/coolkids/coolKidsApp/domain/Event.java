@@ -1,5 +1,6 @@
 package com.coolkids.coolKidsApp.domain;
 
+import lombok.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.IndexDirection;
 import org.springframework.data.mongodb.core.index.Indexed;
@@ -7,7 +8,15 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Date;
 
+@Data
+@Getter
+@Setter
+@EqualsAndHashCode
+@NoArgsConstructor
 @Document(collection = "events")
 public class Event {
 
@@ -61,6 +70,7 @@ public class Event {
         this.contactPersonName = contactPersonName;
         this.contactPersonPhoneNumber = contactPersonPhoneNumber;
         this.contactPersonEmail = contactPersonEmail;
+        //Todo: Add this.user and user details (inc. user role) instead of all the contact persons?
     }
 
     public String getId() {
@@ -165,8 +175,5 @@ public class Event {
 
     public void setContactPersonEmail(String contactPersonEmail) {
         this.contactPersonEmail = contactPersonEmail;
-    }
-
-    public String getEventId() {
     }
 }

@@ -29,6 +29,14 @@ public class EventServiceImpl implements EventService {
 
     @Override
     public String createEvent(Event event) {
-        boolean eventExists = eventRepository.findById(event.getEventId()).isPresent();
+        boolean eventExists = eventRepository.
+                findById(event.getId()).
+                isPresent();
+        if(eventExists){
+            throw new IllegalStateException("Event Already Exists");
+        }
+
+        eventRepository.save(event);
+        return "Event Successfully Created";
     }
 }

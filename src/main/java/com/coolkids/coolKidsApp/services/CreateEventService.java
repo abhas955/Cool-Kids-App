@@ -20,19 +20,20 @@ public class CreateEventService {
 
         return eventServiceImpl.createEvent(
                 new Event(
-                        request.getId();
-                        request.eventStartDateTime();
-                        request.eventEndDateTime();
-                        request.eventCreatedDate();
-                        request.eventUpdatedDate();
-                        request.eventType();
-                        request.maxAttendance();
-                        request.currentRSVPS();
-                        request.eventAddress();
-                        request.eventDescription();
-                        request.contactPersonName();
-                        request.contactPersonPhoneNumber();
-                        request.contactPersonEmail();
+                        request.getId(),
+                        request.getEventStartDateTime(),
+                        request.getEventEndDateTime(),
+                        request.getEventCreatedDate(),
+                        request.getEventUpdatedDate(),
+                        request.getEventType(),
+                        request.getMaxAttendance(),
+                        request.getCurrentRSVPS(),
+                        request.getEventAddress(),
+                        request.getEventDescription(),
+                        request.getContactPersonName(),
+                        request.getContactPersonPhoneNumber(),
+                        request.getContactPersonEmail()
+                        //UserRole.USER TODO: do we need this for adminValidation?
                 )
         );
     }

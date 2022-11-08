@@ -6,23 +6,26 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.ToString;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+
 @Getter
 @AllArgsConstructor
 @EqualsAndHashCode
 @ToString
 public class CreateEventRequest {
     private final String Id;
-    private final String eventStartDateTime;
-    private final String eventEndDateTime;
-    private final String eventCreatedDate;
-    private final String eventUpdatedDate;
+    private final LocalDateTime eventStartDateTime;
+    private final LocalDateTime eventEndDateTime;
+    private final LocalDate eventCreatedDate;
+    private final LocalDate eventUpdatedDate;
     private final String eventType;
-    private final String maxAttendance;
-    private final String currentRSVPS;
+    private final Integer maxAttendance;
+    private final Integer currentRSVPS;
     private final String eventAddress;
     private final String eventDescription;
     private final String contactPersonName;
-    private final String contactPersonPhoneNumber;
+    private final Integer contactPersonPhoneNumber;
     private final String contactPersonEmail;
     private final String userRole; //TODO: Do we need this for adminValidation?
 }
