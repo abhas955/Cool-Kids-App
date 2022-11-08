@@ -1,5 +1,6 @@
 package com.coolkids.coolKidsApp.controllers;
 
+import com.coolkids.coolKidsApp.api.v1.model.EventDTO;
 import com.coolkids.coolKidsApp.api.v1.model.EventListDTO;
 
 import com.coolkids.coolKidsApp.services.EventService;
@@ -29,6 +30,11 @@ public class EventController {
 
 
     //Todo: get an event by id
+    @GetMapping("/event/{id}")
+    public ResponseEntity<EventDTO> getEventById(@PathVariable String id){
+        return new ResponseEntity<EventDTO>(
+                eventService.getEventById(id), HttpStatus.OK);
+    }
 
 
     //Todo: update an event (patch)
