@@ -28,6 +28,11 @@ public class EventServiceImpl implements EventService {
     }
 
     @Override
+    public EventDTO findEventById(String id) {
+        return eventMapper.eventToEventDTO(eventRepository.findEventById(id));
+    }
+
+    @Override
     public String createEvent(Event event) {
         boolean eventExists = eventRepository.
                 findById(event.getId()).
