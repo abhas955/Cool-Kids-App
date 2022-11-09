@@ -9,7 +9,7 @@ public interface EventService {
 
     List<EventDTO> getAllEvents();
 
-    EventDTO findEventById(String id);
+    EventDTO getEventById(String id);
     String createEvent(Event event);
 
 
