@@ -31,7 +31,7 @@ public class EventController {
     @GetMapping("/events/{id}")
     public ResponseEntity<EventDTO> getEventById(@PathVariable String id){
         return new ResponseEntity<EventDTO>(
-                eventService.findEventById(id), HttpStatus.OK);
+                eventService.getEventById(id), HttpStatus.OK);
     }
 
     //Todo: create event
