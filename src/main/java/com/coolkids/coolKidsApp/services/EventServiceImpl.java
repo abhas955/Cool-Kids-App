@@ -17,6 +17,10 @@ public class EventServiceImpl implements EventService {
 
     private final EventRepository eventRepository;
 
+    //This is in the Udemy course example (Video #193 @ 11:04) but not UserServiceImpl
+    //probably because of eventmapper.
+    //public EventServiceImpl(EventRepository eventRepository) {this.eventRepository = eventRespository; }
+
     private final EventMapper eventMapper;
 
     @Override
