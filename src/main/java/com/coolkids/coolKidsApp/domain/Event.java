@@ -4,10 +4,14 @@ import lombok.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.IndexDirection;
 import org.springframework.data.mongodb.core.index.Indexed;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Date;
 
 @Data
 @Getter
@@ -20,7 +24,6 @@ public class Event {
     @Id
     private String id;
     @Indexed(unique = true, direction = IndexDirection.DESCENDING, dropDups = true)
-
     private LocalDateTime eventStartDateTime;
     private LocalDateTime eventEndDateTime;
     private LocalDate eventCreatedDate;
@@ -59,6 +62,7 @@ public class Event {
         this.contactPersonName = contactPersonName;
         this.contactPersonPhoneNumber = contactPersonPhoneNumber;
         this.contactPersonEmail = contactPersonEmail;
+        //Todo: Add this.user and user details (inc. user role) instead of all the contact persons?
     }
 
     public String getId() {
