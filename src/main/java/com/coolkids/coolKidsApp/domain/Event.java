@@ -39,6 +39,11 @@ public class Event {
     private Integer contactPersonPhoneNumber;
     private String contactPersonEmail;
 
+    //Using boxing object. Recommended by Hibernate team since primitive can't be null.
+    //Note this is for h2 db
+    //@Lob He uses this in the example
+    private Byte[] image;
+
     public Event(String id, LocalDateTime eventStartDateTime, LocalDateTime eventEndDateTime,
                  LocalDate eventCreatedDate, LocalDate eventUpdatedDate, String eventType,
                  Integer maxAttendance, Integer currentRSVPS, String eventAddress,

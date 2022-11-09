@@ -45,7 +45,10 @@ public class EventController {
                 //new EventDTO(eventService.createEvent(Event event)), HttpStatus.OK);
     //}
 
+
     //Todo: delete event
+    
+
 
 
     //Todo: update an event (patch)

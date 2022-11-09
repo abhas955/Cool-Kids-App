@@ -8,6 +8,13 @@ import java.util.List;
 public interface EventService {
 
     List<EventDTO> getAllEvents();
+
     EventDTO findEventById(String id);
     String createEvent(Event event);
+
+
+    //TODO: add save Event
+
+    //Todo: add deleteEventById
+
 }
