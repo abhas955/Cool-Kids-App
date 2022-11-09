@@ -28,7 +28,7 @@ public class EventServiceImpl implements EventService {
     }
 
     @Override
-    public EventDTO findEventById(String id) {
+    public EventDTO getEventById(String id) {
         return eventMapper.eventToEventDTO(eventRepository.findEventById(id));
     }
 
@@ -43,10 +43,5 @@ public class EventServiceImpl implements EventService {
 
         eventRepository.save(event);
         return "Event Successfully Created";
-    }
-
-    @Override
-    public EventDTO getEventById(String id) {
-        return eventMapper.eventToEventDTO(eventRepository.findEventById(id));
     }
 }
