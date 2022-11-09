@@ -28,6 +28,6 @@ public class EventServiceImpl implements EventService {
 
     @Override
     public EventDTO getEventById(String id) {
-        return null;
+        return eventMapper.eventToEventDTO(eventRepository.findEventById(id));
     }
 }
