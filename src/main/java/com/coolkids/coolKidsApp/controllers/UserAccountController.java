@@ -5,8 +5,8 @@ import com.coolkids.coolKidsApp.api.v1.model.UserListDTO;
 import com.coolkids.coolKidsApp.domain.User;
 import com.coolkids.coolKidsApp.repository.UserRepository;
 
-import com.coolkids.coolKidsApp.services.RegistrationService;
-import com.coolkids.coolKidsApp.services.UserService;
+import com.coolkids.coolKidsApp.services.userServices.RegistrationService;
+import com.coolkids.coolKidsApp.services.userServices.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

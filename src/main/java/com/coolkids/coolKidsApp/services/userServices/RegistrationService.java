@@ -1,4 +1,4 @@
-package com.coolkids.coolKidsApp.services;
+package com.coolkids.coolKidsApp.services.userServices;
 
 import com.coolkids.coolKidsApp.controllers.RegistrationRequest;
 import com.coolkids.coolKidsApp.domain.User;

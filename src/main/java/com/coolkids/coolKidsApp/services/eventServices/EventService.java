@@ -1,4 +1,4 @@
-package com.coolkids.coolKidsApp.services;
+package com.coolkids.coolKidsApp.services.eventServices;
 
 import com.coolkids.coolKidsApp.api.v1.model.EventDTO;
 import com.coolkids.coolKidsApp.domain.Event;
