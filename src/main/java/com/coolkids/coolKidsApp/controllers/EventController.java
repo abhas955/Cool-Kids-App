@@ -32,7 +32,7 @@ public class EventController {
     @GetMapping("/{id}")
     public ResponseEntity<EventDTO> getEventById(@PathVariable String id){
         return new ResponseEntity<EventDTO>(
-                eventService.getEventById(id), HttpStatus.OK);
+            eventService.getEventById(id), HttpStatus.OK);
     }
 
     //Todo: create event
@@ -44,18 +44,14 @@ public class EventController {
     public String createNewEvent(@RequestBody CreateEventRequest request){
         return createEventService.createEvent(request);
     }
+    //Todo: Show newly created event
 
-
-                //Todo: delete event
-
-
+    //Todo: delete event
 
 
                 //Todo: update an event (patch)
 
-
                 //Todo: cancel an event
-
 
                 //Todo: get users signed up for an event
 

@@ -13,9 +13,7 @@ import java.util.stream.Collectors;
 @Service
 @AllArgsConstructor
 public class EventServiceImpl implements EventService {
-
     private final EventRepository eventRepository;
-
     //This is in the Udemy course example (Video #193 @ 11:04) but not UserServiceImpl
     //probably because of eventmapper.
     //public EventServiceImpl(EventRepository eventRepository) {this.eventRepository = eventRespository; }
@@ -37,13 +35,7 @@ public class EventServiceImpl implements EventService {
 
     @Override
     public String createEvent(Event event) {
-        boolean eventExists = eventRepository.
-                findById(event.getId()).
-                isPresent();
-        if(eventExists){
-            throw new IllegalStateException("Event Already Exists");
-        }
-
+        //TODO: Need to add a test here
         eventRepository.save(event);
         return "Event Successfully Created";
     }

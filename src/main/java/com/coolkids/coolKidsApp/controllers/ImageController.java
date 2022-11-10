@@ -21,12 +21,12 @@ public class ImageController {
         this.eventService = eventService;
     }
 
-    @GetMapping("event/{id}/image") //GetMapping returns the form for the event id that's passed in.
-    public String showUploadForm(@PathVariable String id, Model model){
-        model.addAttribute("event", eventService.getEventById(id));
+    //@GetMapping("event/{id}/image") //GetMapping returns the form for the event id that's passed in.
+    //public String showUploadForm(@PathVariable String id, Model model){
+     //   model.addAttribute("event", eventService.getEventById(id));
 
-        return "event/imageuploadform"; //imageuploadform.html should be in templates
-    }
+        //return "event/imageuploadform"; //imageuploadform.html should be in templates
+    //}
 
     //Handles the upload of the image
     //Takes in the id from the path then gets the request parameter image file passed from the form on the post.
