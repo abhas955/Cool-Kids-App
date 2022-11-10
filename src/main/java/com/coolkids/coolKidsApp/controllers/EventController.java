@@ -13,7 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping(path = "api/v1/")
+@RequestMapping(path = "api/v1/events")
 @AllArgsConstructor
 public class EventController {
     private final EventService eventService;
@@ -22,14 +22,14 @@ public class EventController {
 
     //Todo: list all events
     //TODO: Need to be logged in
-    @GetMapping("/events")
+    @GetMapping("")
     public ResponseEntity<EventListDTO> getAllEvents(){
         return new ResponseEntity<EventListDTO>(
                 new EventListDTO(eventService.getAllEvents()), HttpStatus.OK);
     }
 
     //Todo: get an event by id
-    @GetMapping("/events/{id}")
+    @GetMapping("{id}")
     public ResponseEntity<EventDTO> getEventById(@PathVariable String id){
         return new ResponseEntity<EventDTO>(
                 eventService.getEventById(id), HttpStatus.OK);
@@ -40,7 +40,7 @@ public class EventController {
     //Todo: Create a new event document or part of document?
     //Todo: Insert the document into the database
     //Todo: Let User Know if successful or fail
-    @PostMapping("/events/new")
+    @PostMapping("/new")
     public String createNewEvent(@RequestBody CreateEventRequest request){
         return createEventService.createEvent(request);
     }
