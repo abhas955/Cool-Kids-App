@@ -42,14 +42,14 @@ public class Event {
     //Using boxing object. Recommended by Hibernate team since primitive can't be null.
     //Note this is for h2 db
     //@Lob He uses this in the example
-    private Byte[] image;
+    //private Byte[] image;
 
-    public Event(String id, LocalDateTime eventStartDateTime, LocalDateTime eventEndDateTime,
+    public Event(LocalDateTime eventStartDateTime, LocalDateTime eventEndDateTime,
                  LocalDate eventCreatedDate, LocalDate eventUpdatedDate, String eventType,
                  Integer maxAttendance, Integer currentRSVPS, String eventAddress,
                  String eventDescription, String contactPersonName, Integer contactPersonPhoneNumber,
                  String contactPersonEmail) {
-        this.id = id;
+        //this.id = id;
         this.eventStartDateTime = eventStartDateTime;
         this.eventEndDateTime = eventEndDateTime;
         this.eventCreatedDate = eventCreatedDate;
@@ -77,95 +77,47 @@ public class Event {
         return eventStartDateTime;
     }
 
-    public void setEventStartDateTime(LocalDateTime eventStartDateTime) {
-        this.eventStartDateTime = eventStartDateTime;
-    }
-
     public LocalDateTime getEventEndDateTime() {
         return eventEndDateTime;
-    }
-
-    public void setEventEndDateTime(LocalDateTime eventEndDateTime) {
-        this.eventEndDateTime = eventEndDateTime;
     }
 
     public LocalDate getEventCreatedDate() {
         return eventCreatedDate;
     }
 
-    public void setEventCreatedDate(LocalDate eventCreatedDate) {
-        this.eventCreatedDate = eventCreatedDate;
-    }
-
     public LocalDate getEventUpdatedDate() {
         return eventUpdatedDate;
-    }
-
-    public void setEventUpdatedDate(LocalDate eventUpdatedDate) {
-        this.eventUpdatedDate = eventUpdatedDate;
     }
 
     public String getEventType() {
         return eventType;
     }
 
-    public void setEventType(String eventType) {
-        this.eventType = eventType;
-    }
-
     public Integer getMaxAttendance() {
         return maxAttendance;
-    }
-
-    public void setMaxAttendance(Integer maxAttendance) {
-        this.maxAttendance = maxAttendance;
     }
 
     public Integer getCurrentRSVPS() {
         return currentRSVPS;
     }
 
-    public void setCurrentRSVPS(Integer currentRSVPS) {
-        this.currentRSVPS = currentRSVPS;
-    }
-
     public String getEventAddress() {
         return eventAddress;
-    }
-
-    public void setEventAddress(String eventAddress) {
-        this.eventAddress = eventAddress;
     }
 
     public String getEventDescription() {
         return eventDescription;
     }
 
-    public void setEventDescription(String eventDescription) {
-        this.eventDescription = eventDescription;
-    }
-
     public String getContactPersonName() {
         return contactPersonName;
-    }
-
-    public void setContactPersonName(String contactPersonName) {
-        this.contactPersonName = contactPersonName;
     }
 
     public Integer getContactPersonPhoneNumber() {
         return contactPersonPhoneNumber;
     }
 
-    public void setContactPersonPhoneNumber(Integer contactPersonPhoneNumber) {
-        this.contactPersonPhoneNumber = contactPersonPhoneNumber;
-    }
-
     public String getContactPersonEmail() {
         return contactPersonEmail;
-    }
-
-    public void setContactPersonEmail(String contactPersonEmail) {
-        this.contactPersonEmail = contactPersonEmail;
     }
 }

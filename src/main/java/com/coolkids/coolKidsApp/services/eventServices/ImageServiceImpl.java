@@ -34,7 +34,8 @@ public class ImageServiceImpl implements ImageService {
                 byteObjects[i++] = b;
             }
 
-            event.setImage(byteObjects);
+
+            //event.setImage(byteObjects);
 
             eventRepository.save(event);
         } catch (IOException e) {
