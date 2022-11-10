@@ -6,12 +6,9 @@ import com.coolkids.coolKidsApp.domain.Event;
 import java.util.List;
 
 public interface EventService {
-
     List<EventDTO> getAllEvents();
-
     EventDTO getEventById(String id);
     String createEvent(Event event);
-
 
     //TODO: add save Event
 
