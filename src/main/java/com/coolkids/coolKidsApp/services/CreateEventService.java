@@ -2,7 +2,7 @@ package com.coolkids.coolKidsApp.services;
 
 import com.coolkids.coolKidsApp.controllers.CreateEventRequest;
 import com.coolkids.coolKidsApp.domain.Event;
-import com.coolkids.coolKidsApp.domain.UserRole;
+import com.coolkids.coolKidsApp.services.eventServices.EventServiceImpl;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 

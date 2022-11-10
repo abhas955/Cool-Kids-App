@@ -1,6 +1,6 @@
 package com.coolkids.coolKidsApp.security.config;
 
-import com.coolkids.coolKidsApp.services.UserServiceImpl;
+import com.coolkids.coolKidsApp.services.userServices.UserServiceImpl;
 import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -22,17 +22,17 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-//        http .csrf().disable() .authorizeRequests() .anyRequest().permitAll();
-        http.authorizeRequests()
-                .antMatchers("/").authenticated()
-                .anyRequest().permitAll()
-                .and()
-                .formLogin()
-                .usernameParameter("email")
-                .defaultSuccessUrl("/users")
-                .permitAll()
-                .and()
-                .logout().logoutSuccessUrl("/login").permitAll();
+        http .csrf().disable() .authorizeRequests() .anyRequest().permitAll();
+//        http.authorizeRequests()
+//                .antMatchers("/").authenticated()
+//                .anyRequest().permitAll()
+//                .and()
+//                .formLogin()
+//                .usernameParameter("email")
+//                .defaultSuccessUrl("/users")
+//                .permitAll()
+//                .and()
+//                .logout().logoutSuccessUrl("/login").permitAll();
     }
 
     @Override

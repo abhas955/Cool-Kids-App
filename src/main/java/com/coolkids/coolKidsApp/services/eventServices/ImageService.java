@@ -1,4 +1,4 @@
-package com.coolkids.coolKidsApp.services;
+package com.coolkids.coolKidsApp.services.eventServices;
 
 import org.springframework.web.multipart.MultipartFile; //TODO: what is this for?
 

@@ -1,7 +1,7 @@
 package com.coolkids.coolKidsApp.controllers;
 
-import com.coolkids.coolKidsApp.services.EventService;
-import com.coolkids.coolKidsApp.services.ImageService;
+import com.coolkids.coolKidsApp.services.eventServices.EventService;
+import com.coolkids.coolKidsApp.services.eventServices.ImageService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model; //TODO: Is this what we need?
 import org.springframework.web.bind.annotation.GetMapping;

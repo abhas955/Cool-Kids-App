@@ -3,11 +3,9 @@ package com.coolkids.coolKidsApp.controllers;
 import com.coolkids.coolKidsApp.api.v1.model.EventDTO;
 import com.coolkids.coolKidsApp.api.v1.model.EventListDTO;
 
-import com.coolkids.coolKidsApp.domain.Event;
 import com.coolkids.coolKidsApp.services.CreateEventService;
-import com.coolkids.coolKidsApp.services.EventService;
+import com.coolkids.coolKidsApp.services.eventServices.EventService;
 import lombok.AllArgsConstructor;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.http.HttpStatus;
