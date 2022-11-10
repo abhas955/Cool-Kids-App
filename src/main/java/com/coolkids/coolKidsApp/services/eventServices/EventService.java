@@ -9,6 +9,7 @@ public interface EventService {
     List<EventDTO> getAllEvents();
     EventDTO getEventById(String id);
     String createEvent(Event event);
+    Void deleteEventById(String idToDelete);
 
     //TODO: add save Event
 

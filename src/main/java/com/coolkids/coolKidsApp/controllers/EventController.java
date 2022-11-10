@@ -47,9 +47,12 @@ public class EventController {
     //Todo: Show newly created event
 
     //Todo: delete event
+    @DeleteMapping("/{id}/delete")
+    public void deleteEventById(@PathVariable String id){
+        eventService.deleteEventById(id);
+    }
 
-
-                //Todo: update an event (patch)
+    //Todo: update an event (patch)
 
                 //Todo: cancel an event
 
