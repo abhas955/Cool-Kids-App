@@ -14,7 +14,7 @@ import java.time.LocalDateTime;
 @EqualsAndHashCode
 @ToString
 public class CreateEventRequest {
-    private final String Id;
+    //private final String Id;
     private final LocalDateTime eventStartDateTime;
     private final LocalDateTime eventEndDateTime;
     private final LocalDate eventCreatedDate;
