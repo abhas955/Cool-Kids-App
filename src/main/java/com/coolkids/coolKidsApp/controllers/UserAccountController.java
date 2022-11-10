@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Optional;
 
 @RestController
-@RequestMapping(path = "api/v1/")
+@RequestMapping(path = "api/v1/users")
 @AllArgsConstructor
 public class UserAccountController {
     private RegistrationService registrationService;
@@ -36,13 +36,13 @@ public class UserAccountController {
         return "successfully logged in";
     }
 
-    @GetMapping("/users")
+    @GetMapping("")
     public ResponseEntity<UserListDTO> getAllUsers(){
         return new ResponseEntity<UserListDTO>(
                 new UserListDTO(userService.getAllUsers()), HttpStatus.OK);
     }
 
-    @GetMapping("/users/{lastName}")
+    @GetMapping("/{lastName}")
     public ResponseEntity<UserDTO> getUserByLastName(@PathVariable String lastName){
         return new ResponseEntity<UserDTO>(
                 userService.getUserByLastName(lastName),HttpStatus.OK);

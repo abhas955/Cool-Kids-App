@@ -13,7 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping(path = "api/v1/events")
+@RequestMapping(path = "api/v1/")
 @AllArgsConstructor
 public class EventController {
     private final EventService eventService;
@@ -22,7 +22,7 @@ public class EventController {
 
     //Todo: list all events
     //TODO: Need to be logged in
-    @GetMapping("")
+    @GetMapping("events")
     public ResponseEntity<EventListDTO> getAllEvents(){
         return new ResponseEntity<EventListDTO>(
                 new EventListDTO(eventService.getAllEvents()), HttpStatus.OK);
