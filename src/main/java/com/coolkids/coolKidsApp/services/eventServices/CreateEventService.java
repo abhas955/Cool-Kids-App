@@ -1,4 +1,4 @@
-package com.coolkids.coolKidsApp.services;
+package com.coolkids.coolKidsApp.services.eventServices;
 
 import com.coolkids.coolKidsApp.controllers.CreateEventRequest;
 import com.coolkids.coolKidsApp.domain.Event;
@@ -20,7 +20,7 @@ public class CreateEventService {
 
         return eventServiceImpl.createEvent(
                 new Event(
-                        request.getId(),
+                        //request.getId(),
                         request.getEventStartDateTime(),
                         request.getEventEndDateTime(),
                         request.getEventCreatedDate(),

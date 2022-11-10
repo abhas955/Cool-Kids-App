@@ -42,14 +42,14 @@ public class Event {
     //Using boxing object. Recommended by Hibernate team since primitive can't be null.
     //Note this is for h2 db
     //@Lob He uses this in the example
-    private Byte[] image;
+    //private Byte[] image;
 
-    public Event(String id, LocalDateTime eventStartDateTime, LocalDateTime eventEndDateTime,
+    public Event(LocalDateTime eventStartDateTime, LocalDateTime eventEndDateTime,
                  LocalDate eventCreatedDate, LocalDate eventUpdatedDate, String eventType,
                  Integer maxAttendance, Integer currentRSVPS, String eventAddress,
                  String eventDescription, String contactPersonName, Integer contactPersonPhoneNumber,
                  String contactPersonEmail) {
-        this.id = id;
+        //this.id = id;
         this.eventStartDateTime = eventStartDateTime;
         this.eventEndDateTime = eventEndDateTime;
         this.eventCreatedDate = eventCreatedDate;
