@@ -8,8 +8,10 @@ import java.util.List;
 public interface EventService {
     List<EventDTO> getAllEvents();
     EventDTO getEventById(String id);
-    String createEvent(Event event);
+    String createEvent(Event event); //TODO: change string to EventDTO?
     Void deleteEventById(String idToDelete);
+    String updateEvent(Event event);
+
 
     //TODO: add save Event
 

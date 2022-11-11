@@ -5,6 +5,7 @@ import com.coolkids.coolKidsApp.api.v1.model.EventListDTO;
 
 import com.coolkids.coolKidsApp.services.eventServices.CreateEventService;
 import com.coolkids.coolKidsApp.services.eventServices.EventService;
+import com.coolkids.coolKidsApp.services.eventServices.UpdateEventService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -17,8 +18,8 @@ import org.springframework.web.bind.annotation.*;
 @AllArgsConstructor
 public class EventController {
     private final EventService eventService;
-
     private final CreateEventService createEventService;
+    private final UpdateEventService updateEventService;
 
     //Todo: list all events
     //TODO: Need to be logged in
@@ -35,11 +36,7 @@ public class EventController {
             eventService.getEventById(id), HttpStatus.OK);
     }
 
-    //Todo: create event
-    //Todo: Need to be logged in as an admin
-    //Todo: Create a new event document or part of document?
-    //Todo: Insert the document into the database
-    //Todo: Let User Know if successful or fail
+    //Todo: change String to EventDTO
     @PostMapping("/new")
     public String createNewEvent(@RequestBody CreateEventRequest request){
         return createEventService.createEvent(request);
@@ -47,12 +44,33 @@ public class EventController {
     //Todo: Show newly created event
 
     //Todo: delete event
+    //Todo: add http status
     @DeleteMapping("/{id}/delete")
     public void deleteEventById(@PathVariable String id){
         eventService.deleteEventById(id);
     }
 
     //Todo: update an event (patch)
+    //This controller is to return the event to update
+    //Todo: Is this repetition of getEventById?
+    @GetMapping("/{id}/update")
+    public ResponseEntity<EventDTO> getEventByIdToUpdate(@PathVariable String id){
+        //Todo: Add response status. Do I change the eventDTO?
+        //if(!eventIDExists(id)) {
+          // return new ResponseEntity<EventDTO>("Event Not Found", HttpStatus.BAD_REQUEST);
+        //}
+        //Todo: does getEventById need to be getEvent&BodyById?
+
+        return new ResponseEntity<EventDTO>(
+                eventService.getEventById(id), HttpStatus.OK);
+    }
+
+    //Todo: Update Event
+    //This controller is to save the updates
+    @PostMapping("/{id}/update")
+    public String saveEventUpdate(@PathVariable String id, @RequestBody UpdateEventRequest request){
+        return updateEventService.updateEvent(id, request);
+    }
 
                 //Todo: cancel an event
 

@@ -1,27 +1,19 @@
 package com.coolkids.coolKidsApp.services.eventServices;
 
-import com.coolkids.coolKidsApp.controllers.CreateEventRequest;
+import com.coolkids.coolKidsApp.controllers.UpdateEventRequest;
 import com.coolkids.coolKidsApp.domain.Event;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 @Service
 @AllArgsConstructor
-public class CreateEventService {
+public class UpdateEventService {
+
     private final EventServiceImpl eventServiceImpl;
 
-    //TODO: Add admin validation (like email validator)
-
-    //Todo: Does string need to be DTO?
-    public String createEvent(CreateEventRequest request) {
-        //boolean isAdmin = adminValidator.test(request.getUserRole());
-        //if(!isAdmin) {
-        //throw new IllegalAccessException("Administrator Access Required to Create Event.");
-        //}
-
-        return eventServiceImpl.createEvent(
+    public String updateEvent(String id, UpdateEventRequest request) {
+        return eventServiceImpl.updateEvent(
                 new Event(
-                        //request.getId(),
                         request.getEventStartDateTime(),
                         request.getEventEndDateTime(),
                         request.getEventCreatedDate(),

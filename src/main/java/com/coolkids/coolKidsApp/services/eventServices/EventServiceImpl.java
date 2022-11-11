@@ -45,4 +45,10 @@ public class EventServiceImpl implements EventService {
         eventRepository.deleteById(idToDelete);
         return null;
     }
+
+    //Todo: Can we use the CRUDrepository instead?
+    public String updateEvent(Event event) {
+        eventRepository.save(event);
+        return "Event Successfully Updated";
+    }
 }
