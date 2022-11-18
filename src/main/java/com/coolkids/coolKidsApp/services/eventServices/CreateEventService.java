@@ -30,6 +30,7 @@ public class CreateEventService {
                         request.getCurrentRSVPS(),
                         request.getEventAddress(),
                         request.getEventDescription(),
+                        request.getEventTitle(),
                         request.getContactPersonName(),
                         request.getContactPersonPhoneNumber(),
                         request.getContactPersonEmail()

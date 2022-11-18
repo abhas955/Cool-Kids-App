@@ -5,11 +5,14 @@ import com.coolkids.coolKidsApp.api.v1.model.UserListDTO;
 import com.coolkids.coolKidsApp.domain.User;
 import com.coolkids.coolKidsApp.repository.UserRepository;
 
+import com.coolkids.coolKidsApp.security.PasswordEncoder;
 import com.coolkids.coolKidsApp.services.userServices.RegistrationService;
 import com.coolkids.coolKidsApp.services.userServices.UserService;
 import lombok.AllArgsConstructor;
+import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.parameters.P;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
@@ -48,6 +51,12 @@ public class UserAccountController {
                 userService.getUserByLastName(lastName),HttpStatus.OK);
     }
 
+    @GetMapping("/checkPassword/{password}")
+    public boolean checkPassword(@RequestParam String hash, @PathVariable String password) {
+        PasswordEncoder passwordEncoder = new PasswordEncoder();
+        return passwordEncoder.bCryptPasswordEncoder().matches(password, hash);
+    }
+
     //Todo: create user endpoint
 
 
@@ -55,7 +64,11 @@ public class UserAccountController {
 
 
     //Todo: get a user by id endpoint
-
+    @GetMapping("/id/{id}")
+    public ResponseEntity<UserDTO> getUserById(@PathVariable String id) {
+        return new ResponseEntity<UserDTO>(
+                userService.getUserById(id), HttpStatus.OK);
+    }
 
     //Todo: update a user (patch request)
 

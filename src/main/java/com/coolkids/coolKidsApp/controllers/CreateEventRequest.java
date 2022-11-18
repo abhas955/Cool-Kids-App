@@ -27,6 +27,7 @@ public class CreateEventRequest {
     private final Integer currentRSVPS;
     private final String eventAddress;
     private final String eventDescription;
+    private final String eventTitle;
     private final String contactPersonName;
     private final Integer contactPersonPhoneNumber;
     private final String contactPersonEmail;

@@ -59,4 +59,9 @@ public class UserServiceImpl implements UserDetailsService,UserService {
     public UserDTO getUserByLastName(String name) {
         return userMapper.userToUserDTO(userRepository.findUserByLastName(name));
     }
+
+
+    public UserDTO getUserById(String id) {
+        return userMapper.userToUserDTO(userRepository.findUserById(id));
+    }
 }
