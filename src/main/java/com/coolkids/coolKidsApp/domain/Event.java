@@ -35,6 +35,8 @@ public class Event {
     private Integer currentRSVPS;
     private String eventAddress;
     private String eventDescription;
+
+    private String eventTitle;
     private String contactPersonName;
     //private String contactPersonPicture;
     private Integer contactPersonPhoneNumber;
@@ -48,7 +50,7 @@ public class Event {
     public Event(LocalDateTime eventStartDateTime, LocalDateTime eventEndDateTime,
                  LocalDate eventCreatedDate, LocalDate eventUpdatedDate, String eventType,
                  Integer maxAttendance, Integer currentRSVPS, String eventAddress,
-                 String eventDescription, String contactPersonName, Integer contactPersonPhoneNumber,
+                 String eventDescription, String eventTitle, String contactPersonName, Integer contactPersonPhoneNumber,
                  String contactPersonEmail) {
         //this.id = id;
         this.eventStartDateTime = eventStartDateTime;
@@ -60,6 +62,7 @@ public class Event {
         this.currentRSVPS = currentRSVPS;
         this.eventAddress = eventAddress;
         this.eventDescription = eventDescription;
+        this.eventTitle = eventTitle;
         this.contactPersonName = contactPersonName;
         this.contactPersonPhoneNumber = contactPersonPhoneNumber;
         this.contactPersonEmail = contactPersonEmail;
@@ -109,6 +112,8 @@ public class Event {
     public String getEventDescription() {
         return eventDescription;
     }
+
+    public String getEventTitle() {return eventTitle;}
 
     public String getContactPersonName() {
         return contactPersonName;
