@@ -2,7 +2,6 @@ package com.coolkids.coolKidsApp.services.eventServices;
 
 import com.coolkids.coolKidsApp.api.v1.mapper.EventMapper;
 import com.coolkids.coolKidsApp.api.v1.model.EventDTO;
-import com.coolkids.coolKidsApp.domain.Event;
 import com.coolkids.coolKidsApp.repository.EventRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -31,13 +30,6 @@ public class EventServiceImpl implements EventService {
     @Override
     public EventDTO getEventById(String id) {
         return eventMapper.eventToEventDTO(eventRepository.findEventById(id));
-    }
-
-    @Override
-    public String createEvent(Event event) {
-        //TODO: Need to add a test here
-        eventRepository.save(event);
-        return "Event Successfully Created";
     }
 
     @Override
