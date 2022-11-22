@@ -22,12 +22,12 @@ public class CreateEventRequest {
     private final LocalDateTime eventEndDateTime;
     private final LocalDate eventCreatedDate;
     private final LocalDate eventUpdatedDate;
+    private final String eventTitle;
     private final String eventType;
     private final Integer maxAttendance;
     private final Integer currentRSVPS;
     private final String eventAddress;
     private final String eventDescription;
-    private final String eventTitle;
     private final String contactPersonName;
     private final Integer contactPersonPhoneNumber;
     private final String contactPersonEmail;

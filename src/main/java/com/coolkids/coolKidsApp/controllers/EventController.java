@@ -2,8 +2,6 @@ package com.coolkids.coolKidsApp.controllers;
 
 import com.coolkids.coolKidsApp.api.v1.model.EventDTO;
 import com.coolkids.coolKidsApp.api.v1.model.EventListDTO;
-
-import com.coolkids.coolKidsApp.domain.Event;
 import com.coolkids.coolKidsApp.repository.EventRepository;
 import com.coolkids.coolKidsApp.services.eventServices.EventService;
 import lombok.AllArgsConstructor;
@@ -13,13 +11,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.net.URI;
-import java.net.URISyntaxException;
-
 @RestController
-@RequestMapping(path = "api/v1/events")
+@RequestMapping("api/v1/events")
 @AllArgsConstructor
 public class EventController {
+
     private final EventService eventService;
     private final EventRepository eventRepository;
 
@@ -40,9 +36,8 @@ public class EventController {
 
     //Todo: Need to be logged in as an admin
     @PostMapping("/new")
-    public ResponseEntity createEvent(@RequestBody Event event) throws URISyntaxException {
-        Event newEvent = eventRepository.insert(event);
-        return ResponseEntity.created(new URI("/" + newEvent.getId())).body(newEvent);
+    public ResponseEntity<EventDTO> createEvent(@RequestBody EventDTO eventDTO){
+        return new ResponseEntity<EventDTO>(eventService.createEvent(eventDTO), HttpStatus.CREATED);
     }
 
     //Todo: delete event
