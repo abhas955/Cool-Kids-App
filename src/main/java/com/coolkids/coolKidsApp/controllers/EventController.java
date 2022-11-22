@@ -2,8 +2,7 @@ package com.coolkids.coolKidsApp.controllers;
 
 import com.coolkids.coolKidsApp.api.v1.model.EventDTO;
 import com.coolkids.coolKidsApp.api.v1.model.EventListDTO;
-
-import com.coolkids.coolKidsApp.services.eventServices.CreateEventService;
+import com.coolkids.coolKidsApp.repository.EventRepository;
 import com.coolkids.coolKidsApp.services.eventServices.EventService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,12 +12,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping(path = "api/v1/events")
+@RequestMapping("api/v1/events")
 @AllArgsConstructor
 public class EventController {
-    private final EventService eventService;
 
-    private final CreateEventService createEventService;
+    private final EventService eventService;
+    private final EventRepository eventRepository;
 
     //Todo: list all events
     //TODO: Need to be logged in
@@ -35,16 +34,11 @@ public class EventController {
             eventService.getEventById(id), HttpStatus.OK);
     }
 
-    //Todo: create event
     //Todo: Need to be logged in as an admin
-    //Todo: Create a new event document or part of document?
-    //Todo: Insert the document into the database
-    //Todo: Let User Know if successful or fail
     @PostMapping("/new")
-    public String createNewEvent(@RequestBody CreateEventRequest request){
-        return createEventService.createEvent(request);
+    public ResponseEntity<EventDTO> createEvent(@RequestBody EventDTO eventDTO){
+        return new ResponseEntity<EventDTO>(eventService.createEvent(eventDTO), HttpStatus.CREATED);
     }
-    //Todo: Show newly created event
 
     //Todo: delete event
     @DeleteMapping("/{id}/delete")

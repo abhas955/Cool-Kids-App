@@ -1,5 +1,6 @@
 package com.coolkids.coolKidsApp.api.v1.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 import lombok.Getter;
 
@@ -14,6 +15,7 @@ public class EventDTO {
     private LocalDateTime eventEndDateTime;
     private LocalDate eventCreatedDate;
     private LocalDate eventUpdatedDate;
+    private String eventTitle;
     private String eventType;
     //private String eventPhoto;
     private Integer maxAttendance;
@@ -24,4 +26,7 @@ public class EventDTO {
     //private String contactPersonPicture;
     private Integer contactPersonPhoneNumber;
     private String contactPersonEmail;
+
+    @JsonProperty("event_url")
+    private String eventUrl;
 }

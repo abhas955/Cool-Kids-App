@@ -11,14 +11,28 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-@AllArgsConstructor
+//@AllArgsConstructor
 public class EventServiceImpl implements EventService {
     private final EventRepository eventRepository;
-    //This is in the Udemy course example (Video #193 @ 11:04) but not UserServiceImpl
-    //probably because of eventmapper.
-    //public EventServiceImpl(EventRepository eventRepository) {this.eventRepository = eventRespository; }
-
     private final EventMapper eventMapper;
+
+    public EventServiceImpl(EventMapper eventMapper, EventRepository eventRepository) {
+        this.eventMapper = eventMapper;
+        this.eventRepository = eventRepository;
+    }
+
+    @Override
+    public EventDTO createEvent(EventDTO eventDTO){
+        Event event = eventMapper.eventDTOToEvent(eventDTO);
+
+        Event savedEvent = eventRepository.insert(event);
+
+        EventDTO returnDto = eventMapper.eventToEventDTO(savedEvent);
+
+        returnDto.setEventUrl("/api/v1/events/" + savedEvent.getId());
+
+        return returnDto;
+    }
 
     @Override
     public List<EventDTO> getAllEvents() {
@@ -31,13 +45,6 @@ public class EventServiceImpl implements EventService {
     @Override
     public EventDTO getEventById(String id) {
         return eventMapper.eventToEventDTO(eventRepository.findEventById(id));
-    }
-
-    @Override
-    public String createEvent(Event event) {
-        //TODO: Need to add a test here
-        eventRepository.save(event);
-        return "Event Successfully Created";
     }
 
     @Override

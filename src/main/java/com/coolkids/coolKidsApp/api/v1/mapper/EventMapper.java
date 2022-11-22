@@ -14,4 +14,6 @@ public interface EventMapper {
 
     @Mapping(source = "id",target = "id")
     EventDTO eventToEventDTO(Event event);
+
+    Event eventDTOToEvent(EventDTO eventDTO);
 }
