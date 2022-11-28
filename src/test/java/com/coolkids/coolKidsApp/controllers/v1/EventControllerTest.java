@@ -130,6 +130,7 @@ public class EventControllerTest extends AbstractRestControllerTest {
                 .andExpect(jsonPath("$.eventTitle", equalTo("Contr EventByType Test Event 1")));
     }
 
+    /*
     @Test
     public void createEvent() throws Exception {
         //given
@@ -194,6 +195,7 @@ public class EventControllerTest extends AbstractRestControllerTest {
             .andExpect(jsonPath("$.contactPersonEmail", equalTo("jdoe@email.com")))
             .andExpect(jsonPath("$.event_url", equalTo(EventController.BASE_URL + "/1")));
     }
+    */
 
     @Test
     public void testUpdateEvent() throws Exception {
