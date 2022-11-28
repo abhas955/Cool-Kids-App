@@ -6,13 +6,27 @@ import java.util.List;
 
 public interface EventService {
 
-    EventDTO createEvent(EventDTO eventDTO);
     List<EventDTO> getAllEvents();
+
     EventDTO getEventById(String id);
-    Void deleteEventById(String idToDelete);
 
-    //TODO: add save Event
+   EventDTO getEventByTitle(String title);
 
-    //Todo: add deleteEventById
+    EventDTO getEventByStartDateTime(String start);
+
+    EventDTO getEventByType(String type);
+
+    EventDTO createNewEvent(EventDTO eventDTO);
+
+    EventDTO saveEventByDTO(String id, EventDTO eventDTO);
+
+    EventDTO patchEvent(String id, EventDTO eventDTO);
+
+    //By I've RSVP'd
+
+    //By I've created
+
+    //Delete
+    void deleteEventById(String idToDelete);
 
 }
