@@ -2,7 +2,6 @@ package com.coolkids.coolKidsApp.controllers;
 
 import com.coolkids.coolKidsApp.api.v1.model.EventDTO;
 import com.coolkids.coolKidsApp.api.v1.model.EventListDTO;
-import com.coolkids.coolKidsApp.repository.EventRepository;
 import com.coolkids.coolKidsApp.services.eventServices.EventService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,44 +11,72 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("api/v1/events")
+@RequestMapping(EventController.BASE_URL)
 @AllArgsConstructor
 public class EventController {
 
-    private final EventService eventService;
-    private final EventRepository eventRepository;
+    public static final String BASE_URL = "/api/v1/events";
 
-    //Todo: list all events
-    //TODO: Need to be logged in
-    @GetMapping("")
-    public ResponseEntity<EventListDTO> getAllEvents(){
+    private final EventService eventService;
+
+    @GetMapping
+    public ResponseEntity<EventListDTO> getListOfEvents(){
         return new ResponseEntity<EventListDTO>(
                 new EventListDTO(eventService.getAllEvents()), HttpStatus.OK);
     }
 
-    //Todo: get an event by id
-    @GetMapping("/{id}")
+    @GetMapping({"/{id}"})
     public ResponseEntity<EventDTO> getEventById(@PathVariable String id){
         return new ResponseEntity<EventDTO>(
-            eventService.getEventById(id), HttpStatus.OK);
+                eventService.getEventById(id), HttpStatus.OK);
     }
 
+    @GetMapping("/title/{title}")
+    public ResponseEntity<EventDTO> getEventByTitle(@PathVariable String title){
+        return new ResponseEntity<EventDTO>(eventService.getEventByTitle(title), HttpStatus.OK);
+    }
+
+    @GetMapping("/start/{start}")
+    public ResponseEntity<EventDTO> getEventByStartDateTime(@PathVariable String start){
+        return new ResponseEntity<EventDTO>(
+                eventService.getEventByStartDateTime(start), HttpStatus.OK);
+    }
+
+    @GetMapping("/type/{type}")
+    public ResponseEntity<EventDTO> getEventByType(@PathVariable String type){
+        return new ResponseEntity<EventDTO>(
+                eventService.getEventByType(type), HttpStatus.OK);
+    }
+
+    //TODO: get Events By I've RSVP'd
+
+    //TODO: get Events By I've Created
+
     //Todo: Need to be logged in as an admin
-    @PostMapping("/new")
-    public ResponseEntity<EventDTO> createEvent(@RequestBody EventDTO eventDTO){
-        return new ResponseEntity<EventDTO>(eventService.createEvent(eventDTO), HttpStatus.CREATED);
+    @PostMapping
+    public ResponseEntity<EventDTO> createNewEvent(@RequestBody EventDTO eventDTO){
+        return new ResponseEntity<EventDTO>(eventService.createNewEvent(eventDTO), HttpStatus.CREATED);
+    }
+
+    @PutMapping({"/{id}"})
+    public ResponseEntity<EventDTO> updateEvent(@PathVariable String id, @RequestBody EventDTO eventDTO){
+        return new ResponseEntity<EventDTO>(eventService.saveEventByDTO(id, eventDTO), HttpStatus.OK);
+    }
+
+    @PatchMapping({"/{id}"})
+    public ResponseEntity<EventDTO> patchEvent(@PathVariable String id, @RequestBody EventDTO eventDTO){
+        return new ResponseEntity<EventDTO>(eventService.patchEvent(id, eventDTO), HttpStatus.OK);
     }
 
     //Todo: delete event
-    @DeleteMapping("/{id}/delete")
-    public void deleteEventById(@PathVariable String id){
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public void deleteEvent(@PathVariable String id){
         eventService.deleteEventById(id);
     }
 
-    //Todo: update an event (patch)
+    //Todo: cancel an event
 
-                //Todo: cancel an event
-
-                //Todo: get users signed up for an event
+    //Todo: get users signed up for an event
 
 }
