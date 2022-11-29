@@ -14,7 +14,6 @@ public class Event {
 
     @Id
     private String id;
-
     private String eventStartDateTime;
     private String eventEndDateTime;
     private String eventCreatedDate;
