@@ -4,6 +4,7 @@ import lombok.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.IndexDirection;
 import org.springframework.data.mongodb.core.index.Indexed;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 import org.springframework.data.mongodb.core.mapping.FieldType;
@@ -12,10 +13,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.time.LocalDate;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Date;
-import java.util.Set;
+import java.util.*;
 
 
 @Data
@@ -30,10 +28,15 @@ public class User implements UserDetails {
     private String id;
     @Indexed(unique = true, direction = IndexDirection.DESCENDING, dropDups = true)
 
+    private String username;
     private String firstName;
     private String lastName;
     private String email;
     private String birthdate;
+    @DBRef
+    private Set<Role> roles = new HashSet<>();
+
+    @DBRef
     private Set<Event> events;
     //    private Boolean emailVerified;
 //    private String emailVerifyToken;
@@ -67,8 +70,9 @@ public class User implements UserDetails {
     private Date accountCreatedDate;
     private Date accountUpdatedDate;
 
-    public User(String firstName, String lastName, String phoneNumber, String email,
-                String birthdate, String address, String password, UserRole userRole, Set<Event> events) {
+    public User(String username, String firstName, String lastName, String email, String phoneNumber,
+                String birthdate, String address, String password) {
+        this.username = username;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
@@ -76,8 +80,7 @@ public class User implements UserDetails {
         this.birthdate = birthdate;
         this.address = address;
         this.password = password;
-        this.userRole = userRole;
-        this.events = events;
+
     }
 
 
@@ -104,7 +107,7 @@ public class User implements UserDetails {
 
     @Override
     public String getUsername() {
-        return email;
+        return username;
     }
 
     @Override
@@ -125,6 +128,15 @@ public class User implements UserDetails {
     @Override
     public boolean isEnabled() {
         return enabled;
+    }
+
+
+    public Set<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
     }
 
 //

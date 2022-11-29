@@ -20,7 +20,7 @@ public class Event {
     @Id
     private String id;
     @Indexed(unique = true, direction = IndexDirection.DESCENDING)
-
+    private String eventName;
     private LocalDateTime eventStartDateTime;
     private LocalDateTime eventEndDateTime;
     private LocalDate eventCreatedDate;
