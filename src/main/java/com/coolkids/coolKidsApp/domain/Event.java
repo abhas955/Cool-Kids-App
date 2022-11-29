@@ -2,12 +2,7 @@ package com.coolkids.coolKidsApp.domain;
 
 import lombok.*;
 import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.index.IndexDirection;
-import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
-
-import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 @Data
 @Getter
@@ -19,12 +14,11 @@ public class Event {
 
     @Id
     private String id;
-    @Indexed(unique = true, direction = IndexDirection.DESCENDING)
 
-    private LocalDateTime eventStartDateTime;
-    private LocalDateTime eventEndDateTime;
-    private LocalDate eventCreatedDate;
-    private LocalDate eventUpdatedDate;
+    private String eventStartDateTime;
+    private String eventEndDateTime;
+    private String eventCreatedDate;
+    private String eventUpdatedDate;
     private String eventTitle;
     private String eventType;
     //private String eventPhoto;
@@ -36,7 +30,6 @@ public class Event {
     //private String contactPersonPicture;
     private Integer contactPersonPhoneNumber;
     private String contactPersonEmail;
-
 
 }
 
