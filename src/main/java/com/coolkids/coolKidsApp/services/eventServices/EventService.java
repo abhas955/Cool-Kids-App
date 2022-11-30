@@ -12,9 +12,7 @@ public interface EventService {
 
    EventDTO getEventByTitle(String title);
 
-    EventDTO getEventByStartDateTime(String start);
-
-    EventDTO getEventByType(String type);
+    EventDTO getEventByTime(String time);
 
     EventDTO createNewEvent(EventDTO eventDTO);
 

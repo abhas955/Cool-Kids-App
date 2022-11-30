@@ -14,6 +14,14 @@ public class Event {
 
     @Id
     private String id;
+
+    private String time;
+    private String title;
+    private String location;
+    private String desc;
+    private String img;
+
+    /*
     private String eventStartDateTime;
     private String eventEndDateTime;
     private String eventCreatedDate;
@@ -29,6 +37,7 @@ public class Event {
     //private String contactPersonPicture;
     private Integer contactPersonPhoneNumber;
     private String contactPersonEmail;
+     */
 
 }
 
