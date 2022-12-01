@@ -4,6 +4,8 @@ import lombok.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.Set;
+
 @Data
 @Getter
 @Setter
@@ -29,6 +31,8 @@ public class Event {
     //private String contactPersonPicture;
     private Integer contactPersonPhoneNumber;
     private String contactPersonEmail;
+
+    private Set<User> userSet;
 
 }
 

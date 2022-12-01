@@ -14,4 +14,6 @@ public interface EventRepository extends MongoRepository<Event, String> {
     Event findByEventStartDateTime(String eventStartDateTime);
 
     Event findByEventType(String type);
+
+    Boolean existsByEventTitle(String username);
 }
