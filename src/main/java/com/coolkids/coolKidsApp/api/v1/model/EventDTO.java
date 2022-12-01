@@ -13,6 +13,13 @@ import lombok.NoArgsConstructor;
 public class EventDTO {
     private String id;
 
+    private String time;
+    private String title;
+    private String location;
+    private String desc;
+    private String img;
+
+    /* Old Schema
     private String eventStartDateTime;
     private String eventEndDateTime;
     private String eventCreatedDate;
@@ -28,6 +35,7 @@ public class EventDTO {
     //private String contactPersonPhoto;
     private Integer contactPersonPhoneNumber;
     private String contactPersonEmail;
+     */
 
     @JsonProperty("event_url")
     private String eventUrl;

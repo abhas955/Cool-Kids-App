@@ -9,9 +9,10 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional(readOnly = true)
 public interface EventRepository extends MongoRepository<Event, String> {
 
-    Event findByEventTitle(String title);
+    Event findByTitle(String title);
 
-    Event findByEventStartDateTime(String eventStartDateTime);
+    Event findByTime(String time);
 
-    Event findByEventType(String type);
+    //Event findByEventType(String type);
+
 }

@@ -20,7 +20,7 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
 public class EventServiceImplTest {
-
+    /*
     private final String ID = "0000";
     private final String EVENT_START = "0000-00-00";
     private final String EVENT_END = "0000-00-00";
@@ -37,6 +37,7 @@ public class EventServiceImplTest {
     //private final String CONTACT_PHOTO = "";
     private final Integer CONTACT_PHONE_NUMBER = 1234567890;
     private final String CONTACT_EMAIL = "jdoe@email.com";
+     */
 
     @Mock
     EventRepository eventRepository;
@@ -56,11 +57,11 @@ public class EventServiceImplTest {
         //given
         Event event1 = new Event();
         event1.setId("0000");
-        event1.setEventTitle("Serv Impl getAllEvents Test Event 1");
+        event1.setTitle("Serv Impl getAllEvents Test Event 1");
 
         Event event2 = new Event();
         event2.setId("0001");
-        event2.setEventTitle("Serv Impl getAllEvents Test Event 2");
+        event2.setTitle("Serv Impl getAllEvents Test Event 2");
 
         when(eventRepository.findAll()).thenReturn(Arrays.asList(event1, event2));
 
@@ -75,57 +76,58 @@ public class EventServiceImplTest {
     @Test
     public void getEventById() throws Exception {
         //given
-        Event event1 = new Event();
-        event1.setId("0000");
-        event1.setEventTitle("Serv Impl getEventById Test Event 1");
+        Event event = new Event();
+        event.setId("0000");
+        event.setTitle("Serv Impl getEventById Test Event 1");
 
-        when(eventRepository.findById(anyString())).thenReturn(java.util.Optional.ofNullable(event1));
+        when(eventRepository.findById(anyString())).thenReturn(java.util.Optional.ofNullable(event));
 
         //when
         EventDTO eventDTO = eventService.getEventById("0000");
 
         //then
-        assertEquals("Serv Impl getEventById Test Event 1", eventDTO.getEventTitle());
+        assertEquals("Serv Impl getEventById Test Event 1", eventDTO.getTitle());
 
     }
 
     @Test
     public void getEventByTitle() throws Exception {
         //given
-        Event event1 = new Event();
-        event1.setEventTitle("Serv Impl getEventByTitle Test Event 1");
+        Event event = new Event();
+        event.setTitle("Serv Impl getEventByTitle Test Event 1");
 
-        when(eventRepository.findByEventTitle(anyString())).thenReturn(event1);
+        when(eventRepository.findByTitle(anyString())).thenReturn(event);
 
         //when
         EventDTO eventDTO = eventService.getEventByTitle("Serv Impl getEventByTitle Test Event 1");
 
         //then
-        assertEquals("Serv Impl getEventByTitle Test Event 1", eventDTO.getEventTitle());
+        assertEquals("Serv Impl getEventByTitle Test Event 1", eventDTO.getTitle());
     }
 
     @Test
-    public void getEventByStartDateTime() throws Exception {
+    public void getEventByTime() throws Exception {
         //given
-        Event event1 = new Event();
-        event1.setEventStartDateTime("0000/11/22");
-        event1.setEventTitle("Serv Impl getEventByStart Test Event 1");
+        Event event = new Event();
+        event.setTime("0000/11/22");
+        event.setTitle("Serv Impl getEventByStart Test Event 1");
 
-        when(eventRepository.findByEventStartDateTime(anyString())).thenReturn(event1);
+        when(eventRepository.findByTime(anyString())).thenReturn(event);
 
         //when
-        EventDTO eventDTO = eventService.getEventByStartDateTime("0000/11/22");
+        EventDTO eventDTO = eventService.getEventByTime("0000/11/22");
 
         //then
-        assertEquals("0000/11/22", eventDTO.getEventStartDateTime());
+        assertEquals("0000/11/22", eventDTO.getTime());
     }
 
+    /*
     @Test
     public void getEventByType() throws Exception {
         //given
         Event event1 = new Event();
-        event1.setEventType("Party");
-        event1.setEventTitle("Serv Impl getEventByType Test Event 1");
+        event1.setType("Party");
+        event1.setTitle("Serv Impl getEventByType Test Event 1");
 
         when(eventRepository.findByEventType(anyString())).thenReturn(event1);
 
@@ -135,13 +137,21 @@ public class EventServiceImplTest {
         //then
         assertEquals("Party", eventDTO.getEventType());
     }
+     */
 
     @Test
     public void createEvent() throws Exception {
 
         //given
         EventDTO eventDTO = new EventDTO();
+        eventDTO.setId("0000");
+        eventDTO.setTime("0000/11/22");
+        eventDTO.setTitle("Test Create Event 1");
+        eventDTO.setLocation("123 Event Way, Charlotte, NC");
+        eventDTO.setDesc("This is a test event.");
+        eventDTO.setImg("https://coolkidscampaign.org/wp-content/uploads/2022/11/December-10th-2022-1.png");
 
+        /*
         eventDTO.setId(ID);
         eventDTO.setEventStartDateTime(EVENT_START);
         eventDTO.setEventEndDateTime(EVENT_END);
@@ -158,10 +168,18 @@ public class EventServiceImplTest {
         //eventDTO.setContactPhoto(CONTACT_PHOTO);
         eventDTO.setContactPersonPhoneNumber(CONTACT_PHONE_NUMBER);
         eventDTO.setContactPersonEmail(CONTACT_EMAIL);
+         */
 
 
         Event savedEvent = new Event();
 
+        savedEvent.setTime(eventDTO.getTime());
+        savedEvent.setTitle(eventDTO.getTitle());
+        savedEvent.setLocation(eventDTO.getLocation());
+        savedEvent.setDesc(eventDTO.getDesc());
+        savedEvent.setImg(eventDTO.getImg());
+
+        /*
         savedEvent.setEventStartDateTime(eventDTO.getEventStartDateTime());
         savedEvent.setEventEndDateTime(eventDTO.getEventEndDateTime());
         savedEvent.setEventCreatedDate(eventDTO.getEventCreatedDate());
@@ -178,6 +196,7 @@ public class EventServiceImplTest {
         savedEvent.setContactPersonPhoneNumber(eventDTO.getContactPersonPhoneNumber());
         savedEvent.setContactPersonEmail(eventDTO.getContactPersonEmail());
         savedEvent.setId(ID);
+         */
 
         when(eventRepository.save(any(Event.class))).thenReturn(savedEvent);
 
@@ -185,6 +204,13 @@ public class EventServiceImplTest {
         EventDTO savedDto = eventService.createNewEvent(eventDTO);
 
         //then
+        assertEquals(eventDTO.getTime(), savedDto.getTime());
+        assertEquals(eventDTO.getTitle(), savedDto.getTitle());
+        assertEquals(eventDTO.getLocation(), savedDto.getLocation());
+        assertEquals(eventDTO.getDesc(), savedDto.getDesc());
+        assertEquals(eventDTO.getImg(), savedDto.getImg());
+
+        /*
         assertEquals(eventDTO.getEventStartDateTime(), savedDto.getEventStartDateTime());
         assertEquals(eventDTO.getEventEndDateTime(), savedDto.getEventEndDateTime());
         assertEquals(eventDTO.getEventCreatedDate(), savedDto.getEventCreatedDate());
@@ -201,6 +227,7 @@ public class EventServiceImplTest {
         assertEquals(eventDTO.getContactPersonPhoneNumber(), savedDto.getContactPersonPhoneNumber());
         assertEquals(eventDTO.getContactPersonEmail(), savedDto.getContactPersonEmail());
         assertEquals(EventController.BASE_URL + "/0000", savedDto.getEventUrl());
+         */
     }
 
     @Test
@@ -208,19 +235,19 @@ public class EventServiceImplTest {
 
         //given
         EventDTO eventDTO = new EventDTO();
-        eventDTO.setEventType(TYPE);
+        eventDTO.setTitle("Test Save Event By DTO 1");
 
         Event savedEvent = new Event();
-        savedEvent.setEventType(eventDTO.getEventType());
-        savedEvent.setId(ID);
+        savedEvent.setTitle(eventDTO.getTitle());
+        savedEvent.setId("0000");
 
         when(eventRepository.save(any(Event.class))).thenReturn(savedEvent);
 
         //when
-        EventDTO savedDTO = eventService.saveEventByDTO(ID, eventDTO);
+        EventDTO savedDTO = eventService.saveEventByDTO("0000", eventDTO);
 
         //then
-        assertEquals(eventDTO.getEventType(), savedDTO.getEventType());
+        assertEquals(eventDTO.getTitle(), savedDTO.getTitle());
         assertEquals(EventController.BASE_URL + "/0000", savedDTO.getEventUrl());
     }
 

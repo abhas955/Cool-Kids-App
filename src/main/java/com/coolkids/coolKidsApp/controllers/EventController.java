@@ -36,16 +36,10 @@ public class EventController {
         return new ResponseEntity<EventDTO>(eventService.getEventByTitle(title), HttpStatus.OK);
     }
 
-    @GetMapping("/start/{start}")
-    public ResponseEntity<EventDTO> getEventByStartDateTime(@PathVariable String start){
+    @GetMapping("/time/{time}")
+    public ResponseEntity<EventDTO> getEventByTime(@PathVariable String time){
         return new ResponseEntity<EventDTO>(
-                eventService.getEventByStartDateTime(start), HttpStatus.OK);
-    }
-
-    @GetMapping("/type/{type}")
-    public ResponseEntity<EventDTO> getEventByType(@PathVariable String type){
-        return new ResponseEntity<EventDTO>(
-                eventService.getEventByType(type), HttpStatus.OK);
+                eventService.getEventByTime(time), HttpStatus.OK);
     }
 
     //TODO: get Events By I've RSVP'd
