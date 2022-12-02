@@ -14,6 +14,9 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
+import java.time.LocalDateTime;
+import java.time.ZoneOffset;
+import java.time.ZonedDateTime;
 import java.util.Arrays;
 
 import static org.hamcrest.Matchers.equalTo;
@@ -100,14 +103,14 @@ public class EventControllerTest extends AbstractRestControllerTest {
     public void testGetEventByTime() throws Exception {
         //given
         EventDTO eventDTO = new EventDTO();
-        eventDTO.setTime("0000/11/22");
+        eventDTO.setTime(LocalDateTime.now());
         eventDTO.setTitle("Contr EventByStart Test Event 1");
-        eventDTO.setEventUrl(EventController.BASE_URL + "/time/00001122");
+        eventDTO.setEventUrl(EventController.BASE_URL + "/time/{LocalDateTime.now()}");
 
-        when(eventService.getEventByTime(anyString())).thenReturn(eventDTO);
+        when(eventService.getEventByTime(LocalDateTime.now())).thenReturn(eventDTO);
 
         //when
-        mockMvc.perform(get(EventController.BASE_URL + "/time/00001122")
+        mockMvc.perform(get(EventController.BASE_URL + "/time/LocalDateTime.now()")
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.title", equalTo("Contr EventByStart Test Event 1")));

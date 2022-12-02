@@ -8,6 +8,7 @@ import com.coolkids.coolKidsApp.repository.EventRepository;
 import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -114,7 +115,7 @@ public class EventServiceImpl implements EventService {
     }
 
     @Override
-    public EventDTO getEventByTime(String time) {
+    public EventDTO getEventByTime(LocalDateTime time) {
         return eventMapper.eventToEventDTO(eventRepository.findByTime(time));
     }
 
