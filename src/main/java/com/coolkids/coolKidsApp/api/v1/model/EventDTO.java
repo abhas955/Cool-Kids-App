@@ -6,6 +6,8 @@ import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDateTime;
+
 @Data
 @Getter
 @AllArgsConstructor
@@ -13,11 +15,14 @@ import lombok.NoArgsConstructor;
 public class EventDTO {
     private String id;
 
-    private String time;
+    private LocalDateTime time = LocalDateTime.now();
     private String title;
     private String location;
     private String desc;
     private String img;
+
+    @JsonProperty("event_url")
+    private String eventUrl;
 
     /* Old Schema
     private String eventStartDateTime;
@@ -37,6 +42,5 @@ public class EventDTO {
     private String contactPersonEmail;
      */
 
-    @JsonProperty("event_url")
-    private String eventUrl;
+
 }

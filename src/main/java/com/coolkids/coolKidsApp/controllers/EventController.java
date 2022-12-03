@@ -10,6 +10,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
+
 @RestController
 @RequestMapping(EventController.BASE_URL)
 @AllArgsConstructor
@@ -37,7 +39,7 @@ public class EventController {
     }
 
     @GetMapping("/time/{time}")
-    public ResponseEntity<EventDTO> getEventByTime(@PathVariable String time){
+    public ResponseEntity<EventDTO> getEventByTime(@PathVariable LocalDateTime time){
         return new ResponseEntity<EventDTO>(
                 eventService.getEventByTime(time), HttpStatus.OK);
     }

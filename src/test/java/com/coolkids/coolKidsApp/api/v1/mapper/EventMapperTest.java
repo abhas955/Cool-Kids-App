@@ -5,6 +5,8 @@ import com.coolkids.coolKidsApp.domain.Event;
 import org.junit.Test;
 
 
+import java.time.LocalDateTime;
+
 import static org.junit.Assert.assertEquals;
 
 public class EventMapperTest {
@@ -27,6 +29,7 @@ public class EventMapperTest {
     public static final Integer CONTACT_PHONE = 1112223333;
     public static final String EMAIL = "jdoe@email.com";
      */
+    public static final LocalDateTime CURRENT = LocalDateTime.now();
 
     EventMapper eventMapper = EventMapper.INSTANCE;
 
@@ -37,7 +40,7 @@ public class EventMapperTest {
         Event event = new Event();
 
         event.setId("0000");
-        event.setTime("December 3 @ 8:30 am - 11:00 am ");
+        event.setTime(CURRENT);
         event.setTitle("Test Event 1");
         event.setLocation("123 Event Way, Charlotte, NC");
         event.setDesc("This is a test event.");
@@ -66,7 +69,7 @@ public class EventMapperTest {
 
         //then
         assertEquals("0000", eventDTO.getId());
-        assertEquals("December 3 @ 8:30 am - 11:00 am ", eventDTO.getTime());
+        assertEquals(CURRENT, eventDTO.getTime());
         assertEquals("Test Event 1", eventDTO.getTitle());
         assertEquals("123 Event Way, Charlotte, NC", eventDTO.getLocation());
         assertEquals("This is a test event.", eventDTO.getDesc());
