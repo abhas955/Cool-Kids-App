@@ -58,6 +58,17 @@ public class User{
     private Boolean enabled = true;
     private Date accountCreatedDate;
     private Date accountUpdatedDate;
+    @ManyToMany(fetch = FetchType.LAZY,
+            cascade = {
+                    CascadeType.PERSIST,
+                    CascadeType.MERGE
+            })
+    @JoinTable(name = "user_events",
+            joinColumns = { @JoinColumn(name = "user_id") },
+            inverseJoinColumns = { @JoinColumn(name = "event_id") })
+    private Set<Event> eventRsvps = new HashSet<>();
+
+
 
     public User(String username, String firstName, String lastName, String email, String phoneNumber,
                 String birthdate, String address, String password) {

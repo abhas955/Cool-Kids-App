@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import javax.websocket.Session;
@@ -63,21 +64,15 @@ public class TestController {
 
 
     //Todo: sign up for an event
-//	@PostMapping("/addEvent")
-//	@PreAuthorize("hasAuthority('USER') or hasAuthority('ADMIN')")
-//	public ResponseEntity<?> addEventbyTitle(@RequestBody String eventTitle, String username){
-//		Event event = eventRepository.findByEventTitle(eventTitle);
-//
-//
-//
-//
-//		User user  = userRepository.findByusername(username);
-//
-//		user.getEvents().add(event);
-//
-//		return ResponseEntity.ok(new MessageResponse("Event rsvp'd successfully!"));
-//
-//	}
+	@PostMapping("/addEvent")
+	@PreAuthorize("hasAuthority('USER') or hasAuthority('ADMIN')")
+	public ResponseEntity<?> addEventbyTitle(@RequestBody String eventTitle){
+		Event event = eventRepository.findByEventTitle(eventTitle);
+		User user = (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		user.getEventRsvps().add(event);
+		return ResponseEntity.ok(new MessageResponse("Event rsvp'd successfully!"));
+
+	}
 
 
 
