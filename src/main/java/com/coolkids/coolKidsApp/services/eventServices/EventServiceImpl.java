@@ -44,15 +44,15 @@ public class EventServiceImpl implements EventService {
     }
 
     @Override
-    public EventDTO saveEventByDTO(String id, EventDTO eventDTO){
+    public EventDTO saveEventByDTO(Long id, EventDTO eventDTO){
         Event event = eventMapper.eventDTOToEvent(eventDTO);
         event.setId(id);
 
         return saveAndReturnDTO(event);
     }
 
-    @Override
-    public EventDTO patchEvent(String id, EventDTO eventDTO){
+
+    public EventDTO patchEvent(Long id, EventDTO eventDTO){
         return eventRepository.findById(id).map(event -> {
 
             if(eventDTO.getTime() != null){
@@ -75,9 +75,9 @@ public class EventServiceImpl implements EventService {
                 event.setImg(eventDTO.getImg());
             }
 
-            EventDTO returnDTO = eventMapper.eventToEventDTO(eventRepository.insert(event));
+            EventDTO returnDTO = eventMapper.eventToEventDTO(eventRepository.save(event));
 
-            returnDTO.setEventUrl(getEventUrl(id));
+            returnDTO.setEventUrl(eventDTO.getEventUrl());
 
             return returnDTO;
 
@@ -97,8 +97,10 @@ public class EventServiceImpl implements EventService {
                 .collect(Collectors.toList());
     }
 
+
+
     @Override
-    public EventDTO getEventById(String id) {
+    public EventDTO getEventById(Long id) {
         return eventRepository.findById(id)
                 .map(eventMapper::eventToEventDTO)
                 .map(eventDTO -> {
@@ -121,10 +123,22 @@ public class EventServiceImpl implements EventService {
 
     //By I've RSVP'd
 
+<<<<<<< HEAD
+    @Override
+    public EventDTO getEventByType(String type) {
+        return eventMapper.eventToEventDTO(eventRepository.findByEventType(type));
+    }
+
+    private String getEventUrl(Long id) {
+        return EventController.BASE_URL + "/" + id;
+    }
+
+=======
+>>>>>>> master
     //By I've created
 
     @Override
-    public void deleteEventById(String id) {
+    public void deleteEventById(Long id) {
         eventRepository.deleteById(id);
     }
 }

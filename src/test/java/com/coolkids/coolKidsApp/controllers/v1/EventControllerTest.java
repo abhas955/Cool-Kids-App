@@ -75,7 +75,7 @@ public class EventControllerTest extends AbstractRestControllerTest {
         eventDTO.setTitle("Contr EventById Test Event 1");
         eventDTO.setEventUrl(EventController.BASE_URL + "/1");
 
-        when(eventService.getEventById(anyString())).thenReturn(eventDTO);
+        when(eventService.getEventById(anyLong())).thenReturn(eventDTO);
 
         //when
         mockMvc.perform(get(EventController.BASE_URL + "/1")
@@ -173,7 +173,7 @@ public class EventControllerTest extends AbstractRestControllerTest {
         returnDTO.setTitle(eventDTO.getTitle());
         returnDTO.setEventUrl(EventController.BASE_URL + "/0000");
 
-        when(eventService.saveEventByDTO(anyString(), any(EventDTO.class))).thenReturn(eventDTO);
+        when(eventService.saveEventByDTO(anyLong(), any(EventDTO.class))).thenReturn(eventDTO);
     }
 
     @Test
@@ -183,13 +183,13 @@ public class EventControllerTest extends AbstractRestControllerTest {
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());
 
-        verify(eventService).deleteEventById(anyString());
+        verify(eventService).deleteEventById(anyLong());
     }
 
     @Test
     public void testNotFoundException() throws Exception {
 
-        when(eventService.getEventById(anyString())).thenThrow(ResourceNotFoundException.class);
+        when(eventService.getEventById(anyLong())).thenThrow(ResourceNotFoundException.class);
 
         mockMvc.perform(get(EventController.BASE_URL + "/9999")
                 .contentType(MediaType.APPLICATION_JSON))
