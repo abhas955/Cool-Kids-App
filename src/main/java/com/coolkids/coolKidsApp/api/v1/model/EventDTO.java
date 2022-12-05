@@ -13,6 +13,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 public class EventDTO {
+    private String id;
 
     private Long id;
     private LocalDateTime time = LocalDateTime.now();
