@@ -10,6 +10,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
+
 @RestController
 @RequestMapping(EventController.BASE_URL)
 @AllArgsConstructor
@@ -36,16 +38,10 @@ public class EventController {
         return new ResponseEntity<EventDTO>(eventService.getEventByTitle(title), HttpStatus.OK);
     }
 
-    @GetMapping("/start/{start}")
-    public ResponseEntity<EventDTO> getEventByStartDateTime(@PathVariable String start){
+    @GetMapping("/time/{time}")
+    public ResponseEntity<EventDTO> getEventByTime(@PathVariable LocalDateTime time){
         return new ResponseEntity<EventDTO>(
-                eventService.getEventByStartDateTime(start), HttpStatus.OK);
-    }
-
-    @GetMapping("/type/{type}")
-    public ResponseEntity<EventDTO> getEventByType(@PathVariable String type){
-        return new ResponseEntity<EventDTO>(
-                eventService.getEventByType(type), HttpStatus.OK);
+                eventService.getEventByTime(time), HttpStatus.OK);
     }
 
     //TODO: get Events By I've RSVP'd

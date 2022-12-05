@@ -8,6 +8,7 @@ import com.coolkids.coolKidsApp.repository.EventRepository;
 import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -54,65 +55,24 @@ public class EventServiceImpl implements EventService {
     public EventDTO patchEvent(Long id, EventDTO eventDTO){
         return eventRepository.findById(id).map(event -> {
 
-            if(eventDTO.getEventStartDateTime() != null){
-                event.setEventStartDateTime(eventDTO.getEventStartDateTime());
+            if(eventDTO.getTime() != null){
+                event.setTime(eventDTO.getTime());
             }
 
-            if(eventDTO.getEventEndDateTime() != null) {
-                event.setEventEndDateTime(eventDTO.getEventEndDateTime());
+            if(eventDTO.getTitle() != null) {
+                event.setTitle(eventDTO.getTitle());
             }
 
-            if(eventDTO.getEventCreatedDate() != null) {
-                event.setEventCreatedDate(eventDTO.getEventCreatedDate());
+            if(eventDTO.getLocation() != null) {
+                event.setLocation(eventDTO.getLocation());
             }
 
-            if(eventDTO.getEventUpdatedDate() != null) {
-                event.setEventUpdatedDate(eventDTO.getEventUpdatedDate());
+            if(eventDTO.getDesc() != null) {
+                event.setDesc(eventDTO.getDesc());
             }
 
-            if(eventDTO.getEventTitle() != null) {
-                event.setEventTitle(eventDTO.getEventTitle());
-            }
-
-            if(eventDTO.getEventType() != null) {
-                event.setEventType(eventDTO.getEventType());
-            }
-            /*
-            if(eventDTO.getEventPhoto() != null) {
-                event.setEventPhoto(eventDTO.getEventPhoto());
-            }
-            */
-
-            if(eventDTO.getMaxAttendance() != null) {
-                event.setMaxAttendance(eventDTO.getMaxAttendance());
-            }
-
-            if(eventDTO.getCurrentRSVPS() != null) {
-                event.setMaxAttendance(eventDTO.getMaxAttendance());
-            }
-
-            if(eventDTO.getCurrentRSVPS() != null) {
-                event.setCurrentRSVPS(eventDTO.getCurrentRSVPS());
-            }
-
-            if(eventDTO.getEventAddress() != null) {
-                event.setEventAddress(eventDTO.getEventAddress());
-            }
-
-            if(eventDTO.getEventDescription() != null) {
-                event.setEventDescription(eventDTO.getEventDescription());
-            }
-
-            if(eventDTO.getContactPersonName() != null) {
-                event.setContactPersonName(eventDTO.getContactPersonName());
-            }
-            /*
-            if(eventDTO.getContactPersonPhoto() != null) {
-                event.setContactPersonPhoto(eventDTO.getContactPersonPhoto());
-            }
-             */
-            if(eventDTO.getContactPersonEmail() != null) {
-                event.setContactPersonEmail(eventDTO.getContactPersonEmail());
+            if(eventDTO.getImg() != null) {
+                event.setImg(eventDTO.getImg());
             }
 
             EventDTO returnDTO = eventMapper.eventToEventDTO(eventRepository.save(event));
@@ -153,16 +113,17 @@ public class EventServiceImpl implements EventService {
 
     @Override
     public EventDTO getEventByTitle(String title) {
-        return eventMapper.eventToEventDTO(eventRepository.findByEventTitle(title));
+        return eventMapper.eventToEventDTO(eventRepository.findByTitle(title));
     }
 
     @Override
-    public EventDTO getEventByStartDateTime(String eventStartDateTime) {
-        return eventMapper.eventToEventDTO(eventRepository.findByEventStartDateTime(eventStartDateTime));
+    public EventDTO getEventByTime(LocalDateTime time) {
+        return eventMapper.eventToEventDTO(eventRepository.findByTime(time));
     }
 
     //By I've RSVP'd
 
+<<<<<<< HEAD
     @Override
     public EventDTO getEventByType(String type) {
         return eventMapper.eventToEventDTO(eventRepository.findByEventType(type));
@@ -172,6 +133,8 @@ public class EventServiceImpl implements EventService {
         return EventController.BASE_URL + "/" + id;
     }
 
+=======
+>>>>>>> master
     //By I've created
 
     @Override

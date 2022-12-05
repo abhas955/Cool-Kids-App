@@ -1,11 +1,14 @@
 package com.coolkids.coolKidsApp.domain;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.*;
 
-import org.springframework.data.mongodb.core.mapping.DBRef;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.Set;
 
 @Data
@@ -20,6 +23,13 @@ public class Event {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
+    private LocalDateTime time;
+    private String title;
+    private String location;
+    private String desc;
+    private String img;
     private String eventStartDateTime;
     private String eventEndDateTime;
     private String eventCreatedDate;
@@ -37,6 +47,7 @@ public class Event {
     private String contactPersonEmail;
     @ManyToMany
     private Set<User> userSet;
+
 
 }
 

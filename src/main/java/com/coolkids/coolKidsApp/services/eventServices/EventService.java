@@ -2,6 +2,7 @@ package com.coolkids.coolKidsApp.services.eventServices;
 
 import com.coolkids.coolKidsApp.api.v1.model.EventDTO;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 public interface EventService {
@@ -12,9 +13,7 @@ public interface EventService {
 
    EventDTO getEventByTitle(String title);
 
-    EventDTO getEventByStartDateTime(String start);
-
-    EventDTO getEventByType(String type);
+    EventDTO getEventByTime(LocalDateTime time);
 
     EventDTO createNewEvent(EventDTO eventDTO);
 
