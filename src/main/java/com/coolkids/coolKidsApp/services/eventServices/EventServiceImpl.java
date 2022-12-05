@@ -123,8 +123,8 @@ public class EventServiceImpl implements EventService {
 
     //By I've RSVP'd
 
-<<<<<<< HEAD
-    @Override
+
+
     public EventDTO getEventByType(String type) {
         return eventMapper.eventToEventDTO(eventRepository.findByEventType(type));
     }
@@ -133,8 +133,7 @@ public class EventServiceImpl implements EventService {
         return EventController.BASE_URL + "/" + id;
     }
 
-=======
->>>>>>> master
+
     //By I've created
 
     @Override

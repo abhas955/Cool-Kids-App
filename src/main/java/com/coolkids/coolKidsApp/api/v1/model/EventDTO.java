@@ -14,6 +14,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 public class EventDTO {
 
+    private Long id;
     private LocalDateTime time = LocalDateTime.now();
     private String title;
     private String location;
@@ -23,7 +24,7 @@ public class EventDTO {
     @JsonProperty("event_url")
     private String eventUrl;
 
-    /* Old Schema
+
     private String eventStartDateTime;
     private String eventEndDateTime;
     private String eventCreatedDate;
@@ -39,7 +40,6 @@ public class EventDTO {
     //private String contactPersonPhoto;
     private Integer contactPersonPhoneNumber;
     private String contactPersonEmail;
-     */
 
 
 }

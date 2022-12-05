@@ -49,5 +49,7 @@ public class Event {
     private Set<User> userSet;
 
 
+    public void setType(String party) {
+    }
 }
 

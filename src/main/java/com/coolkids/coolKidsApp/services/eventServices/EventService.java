@@ -28,4 +28,5 @@ public interface EventService {
     //Delete
     void deleteEventById(Long idToDelete);
 
+    EventDTO getEventByType(String s);
 }
