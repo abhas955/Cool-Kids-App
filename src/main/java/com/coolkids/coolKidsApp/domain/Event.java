@@ -26,13 +26,12 @@ public class Event {
     private String eventUpdatedDate;
     private String eventTitle;
     private String eventType;
-    //private String eventPhoto;
+    //private String eventPhotoUrl;
     private Integer maxAttendance;
     private Integer currentRSVPS;
     private String eventAddress;
     private String eventDescription;
     private String contactPersonName;
-    //private String contactPersonPicture;
     private Integer contactPersonPhoneNumber;
     private String contactPersonEmail;
     @ManyToMany
