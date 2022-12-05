@@ -20,11 +20,8 @@ public class EventDTO {
     private String location;
     private String desc;
     private String img;
-
     @JsonProperty("event_url")
     private String eventUrl;
-
-
     private String eventStartDateTime;
     private String eventEndDateTime;
     private String eventCreatedDate;
