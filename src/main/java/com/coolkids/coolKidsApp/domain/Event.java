@@ -2,27 +2,27 @@ package com.coolkids.coolKidsApp.domain;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.*;
-
-
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
+import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.format.annotation.DateTimeFormat;
 
-
-import javax.persistence.*;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
+import java.util.HashSet;
 import java.util.Set;
 
 @Data
+@Getter
+@Setter
 @EqualsAndHashCode
 @NoArgsConstructor
-@Entity
-@Table(name = "events",uniqueConstraints = {
-        @UniqueConstraint(columnNames = "eventTitle"),
-})
+@Document(collection = "events")
 public class Event {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private String id;
 
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
     private LocalDateTime time;
@@ -30,6 +30,12 @@ public class Event {
     private String location;
     private String desc;
     private String img;
+
+    @DBRef
+    private Set<User> users = new HashSet<>();
+
+
+    /*
     private String eventStartDateTime;
     private String eventEndDateTime;
     private String eventCreatedDate;
@@ -45,9 +51,7 @@ public class Event {
     //private String contactPersonPicture;
     private Integer contactPersonPhoneNumber;
     private String contactPersonEmail;
-    @ManyToMany
-    private Set<User> userSet;
-
+     */
 
 }
 

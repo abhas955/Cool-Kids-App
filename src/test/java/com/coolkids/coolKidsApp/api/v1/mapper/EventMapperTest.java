@@ -11,12 +11,8 @@ import static org.junit.Assert.assertEquals;
 
 public class EventMapperTest {
 
-<<<<<<< HEAD
-    public static final Long ID = 00000L;
-=======
     /*
     public static final String ID = "0000";
->>>>>>> master
     public static final String EVENT_START = "0000-00-00";
     public static final String EVENT_END = "0000-00-00";
     public static final String EVENT_CREATED = "0000-00-00";
@@ -72,9 +68,6 @@ public class EventMapperTest {
         EventDTO eventDTO = eventMapper.eventToEventDTO(event);
 
         //then
-<<<<<<< HEAD
-
-=======
         assertEquals("0000", eventDTO.getId());
         assertEquals(CURRENT, eventDTO.getTime());
         assertEquals("Test Event 1", eventDTO.getTitle());
@@ -83,7 +76,6 @@ public class EventMapperTest {
         assertEquals("https://coolkidscampaign.org/wp-content/uploads/2022/11/Breakfast-with-Santa.jpg", eventDTO.getImg());
         /*
         assertEquals(ID, eventDTO.getId());
->>>>>>> master
         assertEquals(EVENT_START, eventDTO.getEventStartDateTime());
         assertEquals(EVENT_END, eventDTO.getEventEndDateTime());
         assertEquals(EVENT_CREATED, eventDTO.getEventCreatedDate());
