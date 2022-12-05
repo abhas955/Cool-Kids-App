@@ -8,7 +8,7 @@ public interface EventService {
 
     List<EventDTO> getAllEvents();
 
-    EventDTO getEventById(String id);
+    EventDTO getEventById(Long id);
 
    EventDTO getEventByTitle(String title);
 
@@ -18,15 +18,15 @@ public interface EventService {
 
     EventDTO createNewEvent(EventDTO eventDTO);
 
-    EventDTO saveEventByDTO(String id, EventDTO eventDTO);
+    EventDTO saveEventByDTO(Long id, EventDTO eventDTO);
 
-    EventDTO patchEvent(String id, EventDTO eventDTO);
+    EventDTO patchEvent(Long id, EventDTO eventDTO);
 
     //By I've RSVP'd
 
     //By I've created
 
     //Delete
-    void deleteEventById(String idToDelete);
+    void deleteEventById(Long idToDelete);
 
 }

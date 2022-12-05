@@ -1,21 +1,25 @@
 package com.coolkids.coolKidsApp.domain;
 
 import lombok.*;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
 
+import org.springframework.data.mongodb.core.mapping.DBRef;
+
+
+import javax.persistence.*;
 import java.util.Set;
 
 @Data
-@Getter
-@Setter
 @EqualsAndHashCode
 @NoArgsConstructor
-@Document(collection = "events")
+@Entity
+@Table(name = "events",uniqueConstraints = {
+        @UniqueConstraint(columnNames = "eventTitle"),
+})
 public class Event {
 
     @Id
-    private String id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private String eventStartDateTime;
     private String eventEndDateTime;
     private String eventCreatedDate;
@@ -31,7 +35,7 @@ public class Event {
     //private String contactPersonPicture;
     private Integer contactPersonPhoneNumber;
     private String contactPersonEmail;
-
+    @ManyToMany
     private Set<User> userSet;
 
 }

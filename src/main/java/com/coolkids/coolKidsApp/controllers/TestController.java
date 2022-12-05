@@ -1,13 +1,18 @@
 package com.coolkids.coolKidsApp.controllers;
 
 import com.coolkids.coolKidsApp.domain.Event;
+import com.coolkids.coolKidsApp.domain.User;
+import com.coolkids.coolKidsApp.payload.response.MessageResponse;
 import com.coolkids.coolKidsApp.repository.EventRepository;
 import com.coolkids.coolKidsApp.repository.RoleRepository;
 import com.coolkids.coolKidsApp.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.web.bind.annotation.*;
+
+import javax.websocket.Session;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
@@ -58,16 +63,21 @@ public class TestController {
 
 
     //Todo: sign up for an event
-	@PostMapping("/addEvent")
-	@PreAuthorize("hasAuthority('USER')")
-	public ResponseEntity<?> addEventbyTitle(@RequestBody String eventTitle){
-		try {
-			Event event = eventRepository.findByEventTitle(eventTitle);
-
-
-		}
-
-	}
+//	@PostMapping("/addEvent")
+//	@PreAuthorize("hasAuthority('USER') or hasAuthority('ADMIN')")
+//	public ResponseEntity<?> addEventbyTitle(@RequestBody String eventTitle, String username){
+//		Event event = eventRepository.findByEventTitle(eventTitle);
+//
+//
+//
+//
+//		User user  = userRepository.findByusername(username);
+//
+//		user.getEvents().add(event);
+//
+//		return ResponseEntity.ok(new MessageResponse("Event rsvp'd successfully!"));
+//
+//	}
 
 
 

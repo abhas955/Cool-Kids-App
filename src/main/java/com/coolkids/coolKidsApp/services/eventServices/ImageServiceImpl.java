@@ -18,9 +18,8 @@ public class ImageServiceImpl implements ImageService {
     public ImageServiceImpl(EventRepository eventRepository) {
         this.eventRepository = eventRepository;
     }
-    @Override
     @Transactional
-    public void saveImageFile(String eventId, MultipartFile file) { //Takes in eventId and multipart file from controller
+    public void saveImageFile(Long eventId, MultipartFile file) { //Takes in eventId and multipart file from controller
 
         try {
             Event event = eventRepository.findById(eventId).get(); //Get event object out of repository since we are saving against an existing event.
@@ -44,5 +43,10 @@ public class ImageServiceImpl implements ImageService {
 
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public void saveImageFile(String eventId, MultipartFile file) {
+
     }
 }

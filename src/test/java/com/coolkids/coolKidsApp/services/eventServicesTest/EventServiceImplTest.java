@@ -21,7 +21,7 @@ import static org.mockito.Mockito.*;
 
 public class EventServiceImplTest {
 
-    private final String ID = "0000";
+    private final Long ID = 0000L;
     private final String EVENT_START = "0000-00-00";
     private final String EVENT_END = "0000-00-00";
     private final String EVENT_CREATED = "0000-00-00";
@@ -55,11 +55,11 @@ public class EventServiceImplTest {
     public void getAllEvents() throws Exception {
         //given
         Event event1 = new Event();
-        event1.setId("0000");
+        event1.setId(0000L);
         event1.setEventTitle("Serv Impl getAllEvents Test Event 1");
 
         Event event2 = new Event();
-        event2.setId("0001");
+        event2.setId(0001L);
         event2.setEventTitle("Serv Impl getAllEvents Test Event 2");
 
         when(eventRepository.findAll()).thenReturn(Arrays.asList(event1, event2));
@@ -76,13 +76,13 @@ public class EventServiceImplTest {
     public void getEventById() throws Exception {
         //given
         Event event1 = new Event();
-        event1.setId("0000");
+        event1.setId(0000L);
         event1.setEventTitle("Serv Impl getEventById Test Event 1");
 
-        when(eventRepository.findById(anyString())).thenReturn(java.util.Optional.ofNullable(event1));
+        when(eventRepository.findById(anyLong())).thenReturn(java.util.Optional.ofNullable(event1));
 
         //when
-        EventDTO eventDTO = eventService.getEventById("0000");
+        EventDTO eventDTO = eventService.getEventById(0000L);
 
         //then
         assertEquals("Serv Impl getEventById Test Event 1", eventDTO.getEventTitle());
@@ -142,7 +142,7 @@ public class EventServiceImplTest {
         //given
         EventDTO eventDTO = new EventDTO();
 
-        eventDTO.setId(ID);
+
         eventDTO.setEventStartDateTime(EVENT_START);
         eventDTO.setEventEndDateTime(EVENT_END);
         eventDTO.setEventCreatedDate(EVENT_CREATED);
@@ -226,10 +226,10 @@ public class EventServiceImplTest {
 
     @Test
     public void deleteEventById() throws Exception {
-        String id = "0000";
+        Long id = 0000L;
 
         eventRepository.deleteById(id);
 
-        verify(eventRepository, times(1)).deleteById(anyString());
+        verify(eventRepository, times(1)).deleteById(anyLong());
     }
 }

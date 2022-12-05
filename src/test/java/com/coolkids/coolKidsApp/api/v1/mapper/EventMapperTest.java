@@ -9,7 +9,7 @@ import static org.junit.Assert.assertEquals;
 
 public class EventMapperTest {
 
-    public static final String ID = "0000";
+    public static final Long ID = 00000L;
     public static final String EVENT_START = "0000-00-00";
     public static final String EVENT_END = "0000-00-00";
     public static final String EVENT_CREATED = "0000-00-00";
@@ -55,7 +55,7 @@ public class EventMapperTest {
         EventDTO eventDTO = eventMapper.eventToEventDTO(event);
 
         //then
-        assertEquals(ID, eventDTO.getId());
+
         assertEquals(EVENT_START, eventDTO.getEventStartDateTime());
         assertEquals(EVENT_END, eventDTO.getEventEndDateTime());
         assertEquals(EVENT_CREATED, eventDTO.getEventCreatedDate());

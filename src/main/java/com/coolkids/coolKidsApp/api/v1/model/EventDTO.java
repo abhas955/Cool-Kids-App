@@ -11,7 +11,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class EventDTO {
-    private String id;
 
     private String eventStartDateTime;
     private String eventEndDateTime;
