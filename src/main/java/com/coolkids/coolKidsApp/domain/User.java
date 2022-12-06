@@ -18,10 +18,9 @@ import java.time.LocalDate;
 import java.util.*;
 
 
-@Data
+
 @Getter
 @Setter
-@EqualsAndHashCode
 @NoArgsConstructor
 @Entity
 @Table(name = "users",
@@ -81,6 +80,19 @@ public class User{
         this.address = address;
         this.password = password;
 
+    }
+
+    public void addEvent(Event event){
+        this.eventRsvps.add(event);
+        event.getUserSetRsvps().add(this);
+    }
+
+    public void removeEvent(Long eventId){
+        Event event = this.eventRsvps.stream().filter(e -> e.getId() == eventId).findFirst().orElse(null);
+                if(event != null){
+                    this.eventRsvps.remove(event);
+                    event.getUserSetRsvps().remove(this);
+                }
     }
 
 

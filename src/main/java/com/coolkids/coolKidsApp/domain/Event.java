@@ -9,7 +9,6 @@ import org.springframework.data.mongodb.core.mapping.DBRef;
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
-
 @Data
 @EqualsAndHashCode
 @NoArgsConstructor

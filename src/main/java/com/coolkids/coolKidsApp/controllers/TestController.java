@@ -10,10 +10,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.*;
 
 import javax.websocket.Session;
+import java.security.Principal;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
@@ -66,16 +69,24 @@ public class TestController {
     //Todo: sign up for an event
 	@PostMapping("/addEvent")
 	@PreAuthorize("hasAuthority('USER') or hasAuthority('ADMIN')")
-	public ResponseEntity<?> addEventbyTitle(@RequestBody String eventTitle){
-		Event event = eventRepository.findByEventTitle(eventTitle);
-		User user = (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		user.getEventRsvps().add(event);
+	public ResponseEntity<?> addEventbyTitle(@RequestBody String eventTitle, Authentication authentication){
+
+
+		String name = authentication.getName();
+		User user1 = (User) userRepository.findByUsername(name).
+				map(user -> {
+					Event event = eventRepository.findEventByEventTitle(eventTitle).
+							orElseThrow(() -> new UsernameNotFoundException("Event not found with title: "+eventTitle));
+					user.addEvent(event);
+					userRepository.save(user);
+
+					return user;
+				}).orElseThrow(() -> new UsernameNotFoundException("User not found: "));
+
 		return ResponseEntity.ok(new MessageResponse("Event rsvp'd successfully!"));
 
+
 	}
-
-
-
 
     //Todo: get events that a user signed up for
 }
