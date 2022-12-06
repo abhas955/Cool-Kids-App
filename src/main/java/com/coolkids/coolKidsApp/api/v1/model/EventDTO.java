@@ -2,11 +2,14 @@ package com.coolkids.coolKidsApp.api.v1.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+
+
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-
+//import jdk.javadoc.internal.doclets.formats.html.markup.Text;
 @Data
 @Getter
 @AllArgsConstructor
