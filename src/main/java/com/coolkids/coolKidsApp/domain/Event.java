@@ -1,6 +1,7 @@
 package com.coolkids.coolKidsApp.domain;
 
 
+
 import lombok.*;
 //import jdk.javadoc.internal.doclets.formats.html.markup.Text;
 import net.minidev.json.annotate.JsonIgnore;
