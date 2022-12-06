@@ -1,8 +1,8 @@
 package com.coolkids.coolKidsApp.domain;
 
-import jdk.javadoc.internal.doclets.formats.html.markup.Text;
-import lombok.*;
 
+import lombok.*;
+//import jdk.javadoc.internal.doclets.formats.html.markup.Text;
 import net.minidev.json.annotate.JsonIgnore;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 
@@ -42,7 +42,7 @@ public class Event {
     private Integer currentRSVPS;
     @Column(name = "eventAddress")
     private String eventAddress;
-    @Column(name = "eventDescription")
+    @Column(columnDefinition = "TEXT", name = "eventDescription")
     private String eventDescription;
     @Column(name = "contactPersonName")
     private String contactPersonName;
