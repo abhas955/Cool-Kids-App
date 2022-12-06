@@ -1,5 +1,6 @@
 package com.coolkids.coolKidsApp.domain;
 
+import jdk.javadoc.internal.doclets.formats.html.markup.Text;
 import lombok.*;
 
 import net.minidev.json.annotate.JsonIgnore;
@@ -33,7 +34,8 @@ public class Event {
     private String eventTitle;
     @Column(name = "eventType")
     private String eventType;
-    //private String eventPhotoUrl;
+    @Column(name = "eventPhotoUrl")
+    private String eventPhotoUrl;
     @Column(name = "maxAttendance")
     private Integer maxAttendance;
     @Column(name = "currentRSVPS")
