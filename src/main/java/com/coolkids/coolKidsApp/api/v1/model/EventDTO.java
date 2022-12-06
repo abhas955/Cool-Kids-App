@@ -1,6 +1,7 @@
 package com.coolkids.coolKidsApp.api.v1.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jdk.javadoc.internal.doclets.formats.html.markup.Text;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.Getter;
@@ -18,11 +19,11 @@ public class EventDTO {
     private String eventUpdatedDate;
     private String eventTitle;
     private String eventType;
-    //private String eventPhoto;
+    private String eventPhoto;
     private Integer maxAttendance;
     private Integer currentRSVPS;
     private String eventAddress;
-    private String eventDescription;
+    private Text eventDescription;
     private String contactPersonName;
     //private String contactPersonPhoto;
     private Integer contactPersonPhoneNumber;
