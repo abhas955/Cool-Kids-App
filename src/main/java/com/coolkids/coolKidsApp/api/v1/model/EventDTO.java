@@ -19,7 +19,7 @@ public class EventDTO {
     private String eventUpdatedDate;
     private String eventTitle;
     private String eventType;
-    private String eventPhoto;
+    private String eventPhotoUrl;
     private Integer maxAttendance;
     private Integer currentRSVPS;
     private String eventAddress;
