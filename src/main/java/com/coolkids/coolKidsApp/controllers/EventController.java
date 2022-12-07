@@ -79,4 +79,6 @@ public class EventController {
 
     //Todo: get users signed up for an event
 
+    //Todo: get current number of rsvps
+
 }
