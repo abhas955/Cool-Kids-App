@@ -3,10 +3,13 @@ package com.coolkids.coolKidsApp.controllers;
 import com.coolkids.coolKidsApp.domain.Event;
 import com.coolkids.coolKidsApp.domain.User;
 import com.coolkids.coolKidsApp.payload.response.MessageResponse;
+import com.coolkids.coolKidsApp.payload.response.UserInfoResponse;
 import com.coolkids.coolKidsApp.repository.EventRepository;
 import com.coolkids.coolKidsApp.repository.RoleRepository;
 import com.coolkids.coolKidsApp.repository.UserRepository;
+import com.coolkids.coolKidsApp.security.services.UserDetailsImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.config.http.SessionCreationPolicy;
@@ -40,8 +43,11 @@ public class TestController {
 	
 	@GetMapping("/user")
 	@PreAuthorize("hasAuthority('USER') or hasAuthority('ADMIN')")
-	public String userAccess() {
-		return "User Content.";
+	public ResponseEntity<?> userAccess(Authentication authentication) {
+
+		String name = authentication.getName();
+		return ResponseEntity.ok()
+				.body(userRepository.findByUsername(name));
 	}
 
 
