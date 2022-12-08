@@ -55,8 +55,8 @@ public class User{
     private String address;
     private Boolean locked = false;
     private Boolean enabled = true;
-    private Date accountCreatedDate;
-    private Date accountUpdatedDate;
+    private LocalDate accountCreatedDate;
+    private LocalDate accountUpdatedDate;
     @ManyToMany(fetch = FetchType.LAZY,
             cascade = {
                     CascadeType.PERSIST,
