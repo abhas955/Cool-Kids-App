@@ -33,7 +33,6 @@ public class TestController {
 	EventRepository eventRepository;
 
 
-
 	@GetMapping("/all")
 	public String allAccess() {
 		return "Public Content.";
@@ -61,10 +60,7 @@ public class TestController {
 	//Todo: update a user (patch request)
 
 
-
     //Todo: replace a user (put request ) (not sure if this will be needed)
-
-
 
     //Todo: sign up for an event/RSVP
 	@PostMapping("/addEvent")
