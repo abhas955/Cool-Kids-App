@@ -1,6 +1,5 @@
 package com.coolkids.coolKidsApp.controllers;
 
-import com.coolkids.coolKidsApp.controllers.RegistrationRequest;
 import com.coolkids.coolKidsApp.domain.Role;
 import com.coolkids.coolKidsApp.domain.User;
 import com.coolkids.coolKidsApp.domain.UserRole;
@@ -25,6 +24,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Locale;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -99,7 +99,7 @@ public class AuthController {
 			roles.add(userRole);
 		} else {
 			strRoles.forEach(role -> {
-				switch (role) {
+				switch (role.toLowerCase()) {
 					case "admin":
 						Role adminRole = roleRepository.findByName(UserRole.ADMIN)
 								.orElseThrow(() -> new RuntimeException("Error: Role is not found."));
@@ -127,5 +127,8 @@ public class AuthController {
 		return ResponseEntity.ok().header(HttpHeaders.SET_COOKIE, cookie.toString())
 				.body(new MessageResponse("You've been signed out!"));
 	}
+
+
+
 }
 
