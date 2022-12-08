@@ -66,7 +66,7 @@ public class TestController {
 
 
 
-    //Todo: sign up for an event
+    //Todo: sign up for an event/RSVP
 	@PostMapping("/addEvent")
 	@PreAuthorize("hasAuthority('USER') or hasAuthority('ADMIN')")
 	public ResponseEntity<?> addEventbyTitle(@RequestBody String eventTitle, Authentication authentication){
@@ -88,5 +88,14 @@ public class TestController {
 
 	}
 
+	//Todo: remove event/unrsvp
+
+
     //Todo: get events that a user signed up for
+
+
+	//Todo: edit profile (put endpoint) (patrick will help with this one)
+
+
+
 }
