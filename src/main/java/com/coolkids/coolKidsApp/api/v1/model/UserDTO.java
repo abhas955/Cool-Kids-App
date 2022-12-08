@@ -20,6 +20,7 @@ public class UserDTO {
     private String phoneNumber;
     private LocalDate accountCreatedDate;
     private LocalDate accountUpdatedDate;
+    private String profilePic;
 
 
 }

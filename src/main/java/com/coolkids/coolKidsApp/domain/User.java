@@ -66,6 +66,7 @@ public class User{
             joinColumns = { @JoinColumn(name = "user_id") },
             inverseJoinColumns = { @JoinColumn(name = "event_id") })
     private Set<Event> eventRsvps = new HashSet<>();
+    private String profilePic;
 
 
 
@@ -79,6 +80,7 @@ public class User{
         this.birthdate = birthdate;
         this.address = address;
         this.password = password;
+
 
     }
 
