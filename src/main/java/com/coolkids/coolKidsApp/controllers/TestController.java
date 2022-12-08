@@ -93,5 +93,8 @@ public class TestController {
 	//Todo: edit profile (put endpoint) (patrick will help with this one)
 
 
+	//Todo: return user in session
+
+
 
 }
