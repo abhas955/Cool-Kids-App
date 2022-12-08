@@ -1,5 +1,6 @@
 package com.coolkids.coolKidsApp.controllers;
 
+import com.coolkids.coolKidsApp.api.v1.model.UserDTO;
 import com.coolkids.coolKidsApp.domain.Event;
 import com.coolkids.coolKidsApp.domain.User;
 import com.coolkids.coolKidsApp.payload.response.MessageResponse;
@@ -8,13 +9,17 @@ import com.coolkids.coolKidsApp.repository.EventRepository;
 import com.coolkids.coolKidsApp.repository.RoleRepository;
 import com.coolkids.coolKidsApp.repository.UserRepository;
 import com.coolkids.coolKidsApp.security.services.UserDetailsImpl;
+import com.coolkids.coolKidsApp.security.services.UserDetailsServiceImpl;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.*;
 
@@ -24,7 +29,11 @@ import java.security.Principal;
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 @RequestMapping("/api/test")
+@AllArgsConstructor
 public class TestController {
+
+
+	private final UserDetailsServiceImpl userDetailsServiceImpl;
 
 	@Autowired
 	UserRepository userRepository;
@@ -63,8 +72,6 @@ public class TestController {
 		return "Admin Board.";
 	}
 
-	//Todo: update a user (patch request)
-
 
     //Todo: replace a user (put request ) (not sure if this will be needed)
 
@@ -92,12 +99,17 @@ public class TestController {
 
 	//Todo: remove event/unrsvp
 
-
     //Todo: get events that a user signed up for
+	
+	@PutMapping({"/user/{id}"})
+	public ResponseEntity<UserDTO> updateUser(@PathVariable Long id, @RequestBody UserDTO userDTO) {
+		return new ResponseEntity<UserDTO>(userDetailsServiceImpl.saveUserByDTO(id, userDTO), HttpStatus.OK);
+	}
 
-
-	//Todo: edit profile (put endpoint) (patrick will help with this one)
-
+	@PatchMapping({"/user/{id}"})
+	public ResponseEntity<UserDTO> patchUser(@PathVariable Long id, @RequestBody UserDTO userDTO) {
+		return new ResponseEntity<UserDTO>(userDetailsServiceImpl.patchUser(id, userDTO), HttpStatus.OK);
+	}
 
 	//Todo: return user in session
 

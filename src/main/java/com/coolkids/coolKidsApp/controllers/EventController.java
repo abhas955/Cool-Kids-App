@@ -66,15 +66,12 @@ public class EventController {
         return new ResponseEntity<EventDTO>(eventService.patchEvent(id, eventDTO), HttpStatus.OK);
     }
 
-    //Todo: delete event
     @DeleteMapping("/{id}")
     @PreAuthorize("hasAuthority('ADMIN')")
     @ResponseStatus(HttpStatus.OK)
     public void deleteEvent(@PathVariable Long id){
         eventService.deleteEventById(id);
     }
-
-    //Todo: cancel an event - if notifications is used
 
     //Todo: get current number of rsvps
 
