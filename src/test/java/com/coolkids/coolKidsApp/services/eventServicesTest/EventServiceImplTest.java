@@ -200,7 +200,7 @@ public class EventServiceImplTest {
         //assertEquals(eventDTO.getContactPhoto(), savedDto.getContactPhoto());
         assertEquals(eventDTO.getContactPersonPhoneNumber(), savedDto.getContactPersonPhoneNumber());
         assertEquals(eventDTO.getContactPersonEmail(), savedDto.getContactPersonEmail());
-        assertEquals(EventController.BASE_URL + "/0000", savedDto.getEventUrl());
+        assertEquals(EventController.BASE_URL + "/0", savedDto.getEventUrl());
     }
 
     @Test
@@ -221,7 +221,7 @@ public class EventServiceImplTest {
 
         //then
         assertEquals(eventDTO.getEventType(), savedDTO.getEventType());
-        assertEquals(EventController.BASE_URL + "/0000", savedDTO.getEventUrl());
+        assertEquals(EventController.BASE_URL + "/0", savedDTO.getEventUrl());
     }
 
     @Test

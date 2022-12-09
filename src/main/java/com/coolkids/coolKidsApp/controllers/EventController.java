@@ -4,6 +4,7 @@ import com.coolkids.coolKidsApp.api.v1.model.EventDTO;
 import com.coolkids.coolKidsApp.api.v1.model.EventListDTO;
 import com.coolkids.coolKidsApp.services.eventServices.EventService;
 import lombok.AllArgsConstructor;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.http.HttpStatus;
@@ -48,36 +49,29 @@ public class EventController {
                 eventService.getEventByType(type), HttpStatus.OK);
     }
 
-    //TODO: get Events By I've RSVP'd
-
-    //TODO: get Events By I've Created
-
-    //Todo: Need to be logged in as an admin
     @PostMapping
     public ResponseEntity<EventDTO> createNewEvent(@RequestBody EventDTO eventDTO){
         return new ResponseEntity<EventDTO>(eventService.createNewEvent(eventDTO), HttpStatus.CREATED);
     }
 
     @PutMapping({"/{id}"})
+    @PreAuthorize("hasAuthority('ADMIN')")
     public ResponseEntity<EventDTO> updateEvent(@PathVariable Long id, @RequestBody EventDTO eventDTO){
         return new ResponseEntity<EventDTO>(eventService.saveEventByDTO(id, eventDTO), HttpStatus.OK);
     }
 
     @PatchMapping({"/{id}"})
+    @PreAuthorize("hasAuthority('ADMIN')")
     public ResponseEntity<EventDTO> patchEvent(@PathVariable Long id, @RequestBody EventDTO eventDTO){
         return new ResponseEntity<EventDTO>(eventService.patchEvent(id, eventDTO), HttpStatus.OK);
     }
 
-    //Todo: delete event
     @DeleteMapping("/{id}")
+    @PreAuthorize("hasAuthority('ADMIN')")
     @ResponseStatus(HttpStatus.OK)
     public void deleteEvent(@PathVariable Long id){
         eventService.deleteEventById(id);
     }
-
-    //Todo: cancel an event
-
-    //Todo: get users signed up for an event
 
     //Todo: get current number of rsvps
 

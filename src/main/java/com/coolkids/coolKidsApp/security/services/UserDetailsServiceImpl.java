@@ -1,8 +1,11 @@
 package com.coolkids.coolKidsApp.security.services;
 
+import com.coolkids.coolKidsApp.api.v1.mapper.UserMapper;
+import com.coolkids.coolKidsApp.api.v1.model.UserDTO;
 import com.coolkids.coolKidsApp.domain.User;
 import com.coolkids.coolKidsApp.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -14,7 +17,11 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 	@Autowired
 	UserRepository userRepository;
 
+	private final UserMapper userMapper;
 
+	public UserDetailsServiceImpl(UserMapper userMapper) {
+		this.userMapper = userMapper;
+	}
 
 	@Override
 	@Transactional
@@ -26,4 +33,77 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 	}
 
 
+	public UserDTO patchUser(Long id, UserDTO userDTO) {
+		return userRepository.findById(id).map(user -> {
+
+			if(userDTO.getFirstName() != null){
+				user.setFirstName(userDTO.getFirstName());
+			}
+
+			if(userDTO.getLastName() != null){
+				user.setLastName(userDTO.getLastName());
+			}
+
+			if(userDTO.getEmail() != null){
+				user.setEmail(userDTO.getEmail());
+			}
+
+			if(userDTO.getPassword() != null){
+				user.setPassword(userDTO.getPassword());
+			}
+
+			if(userDTO.getRoles() != null){
+				user.setRoles(userDTO.getRoles());
+			}
+
+			if(userDTO.getBirthdate() != null){
+				user.setBirthdate(userDTO.getBirthdate());
+			}
+
+			if(userDTO.getAddress() != null){
+				user.setAddress(userDTO.getAddress());
+			}
+
+			if(userDTO.getPhoneNumber() != null){
+				user.setPhoneNumber(userDTO.getPhoneNumber());
+			}
+
+			if(userDTO.getAccountCreatedDate() != null){
+				user.setAccountCreatedDate(userDTO.getAccountCreatedDate());
+			}
+
+			if(userDTO.getAccountUpdatedDate() != null){
+				user.setAccountUpdatedDate(userDTO.getAccountUpdatedDate());
+			}
+
+			if(userDTO.getProfilePic() != null){
+				user.setProfilePic(userDTO.getProfilePic());
+			}
+
+			UserDTO returnDTO = userMapper.userToUserDTO(userRepository.save(user));
+
+			returnDTO.setUserUrl(userDTO.getUserUrl());
+
+			return returnDTO;
+
+		}).orElseThrow(ResourceNotFoundException::new);
+	}
+
+	public UserDTO saveUserByDTO(Long id, UserDTO userDTO) {
+		User user = userMapper.userDTOtoUser(userDTO);
+		user.setId(id);
+
+		return saveAndReturnDTO(user);
+	}
+
+	private UserDTO saveAndReturnDTO(User user) {
+
+		User savedUser = userRepository.save(user);
+
+		UserDTO returnDto = userMapper.userToUserDTO(savedUser);
+
+		returnDto.setUserUrl("/api/test/user/" + savedUser.getId());
+
+		return returnDto;
+	}
 }
