@@ -48,7 +48,7 @@ public class Event {
     @Column(name = "contactPersonName")
     private String contactPersonName;
     @Column(name = "contactPersonNumber")
-    private Integer contactPersonPhoneNumber;
+    private String contactPersonPhoneNumber;
     @Column(name = "contactPersonEmail")
     private String contactPersonEmail;
     @ManyToMany(fetch = FetchType.LAZY,

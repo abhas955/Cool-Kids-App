@@ -29,7 +29,7 @@ public class EventDTO {
     private String eventDescription;
     private String contactPersonName;
     //private String contactPersonPhoto;
-    private Integer contactPersonPhoneNumber;
+    private String contactPersonPhoneNumber;
     private String contactPersonEmail;
 
     @JsonProperty("event_url")
