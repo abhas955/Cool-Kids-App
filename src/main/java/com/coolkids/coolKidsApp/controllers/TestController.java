@@ -97,16 +97,26 @@ public class TestController {
 
 		String name = authentication.getName();
 		User user1 = (User) userRepository.findByUsername(name).
-				map(user -> {
+				orElseThrow(() -> new UsernameNotFoundException("User not found: "));
+//				map(user -> {
+
+
 					Event event = eventRepository.findEventByEventTitle(eventTitle).
 							orElseThrow(() -> new UsernameNotFoundException("Event not found with title: "+eventTitle));
-					user.addEvent(event);
-					userRepository.save(user);
 
-					return user;
-				}).orElseThrow(() -> new UsernameNotFoundException("User not found: "));
+					if(!event.getUserSetRsvps().contains(user1)) {
 
-		return ResponseEntity.ok(new MessageResponse("Event rsvp'd successfully!"));
+						user1.addEvent(event);
+						userRepository.save(user1);
+						return ResponseEntity.ok(new MessageResponse("Event rsvp'd successfully!"));
+					}
+					else
+						return ResponseEntity.ok(new MessageResponse("User aready rsvp'd for this event"));
+
+
+
+
+
 
 
 	}
