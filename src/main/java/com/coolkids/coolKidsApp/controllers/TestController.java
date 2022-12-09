@@ -1,5 +1,8 @@
 package com.coolkids.coolKidsApp.controllers;
 
+import com.coolkids.coolKidsApp.api.v1.mapper.EventMapper;
+import com.coolkids.coolKidsApp.api.v1.mapper.UserMapper;
+import com.coolkids.coolKidsApp.api.v1.model.UserDTO;
 import com.coolkids.coolKidsApp.domain.Event;
 import com.coolkids.coolKidsApp.domain.User;
 import com.coolkids.coolKidsApp.payload.response.MessageResponse;
@@ -7,6 +10,8 @@ import com.coolkids.coolKidsApp.repository.EventRepository;
 import com.coolkids.coolKidsApp.repository.RoleRepository;
 import com.coolkids.coolKidsApp.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.config.http.SessionCreationPolicy;
@@ -32,17 +37,23 @@ public class TestController {
 	@Autowired
 	EventRepository eventRepository;
 
+	@Autowired
+	UserMapper userMapper;
+
 
 
 	@GetMapping("/all")
 	public String allAccess() {
 		return "Public Content.";
 	}
-	
+	//Todo: User profile
 	@GetMapping("/user")
 	@PreAuthorize("hasAuthority('USER') or hasAuthority('ADMIN')")
-	public String userAccess() {
-		return "User Content.";
+	public ResponseEntity<UserDTO> userProfile(Authentication authentication) {
+		String insessionUserName = authentication.getName();
+		User userInSession = userRepository.findByUsername(insessionUserName).
+				orElseThrow(() -> new UsernameNotFoundException("No user logged in!"));
+		return new ResponseEntity<UserDTO>(userMapper.userToUserDTO(userInSession), HttpStatus.OK);
 	}
 
 
@@ -62,7 +73,8 @@ public class TestController {
 
 
 
-    //Todo: replace a user (put request ) (not sure if this will be needed)
+    //Todo: add a profile picture (put request ) (not sure if this will be needed)
+
 
 
 
