@@ -23,7 +23,7 @@ public class EventMapperTest {
     public static final String EVENT_DESCRIPTION = "This is a test event.";
     public static final String CONTACT_NAME = "John Doe";
     //public static final CONTACT_PHOTO = ; Todo: Add test once photo is solved.
-    public static final Integer CONTACT_PHONE = 1112223333;
+    public static final String CONTACT_PHONE = "1112223333";
     public static final String EMAIL = "jdoe@email.com";
 
     EventMapper eventMapper = EventMapper.INSTANCE;

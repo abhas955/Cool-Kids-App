@@ -35,7 +35,7 @@ public class EventServiceImplTest {
     private final String EVENT_DESCRIPTION = "This is a test event.";
     private final String CONTACT_NAME = "John Doe";
     //private final String CONTACT_PHOTO = "";
-    private final Integer CONTACT_PHONE_NUMBER = 1234567890;
+    private final String CONTACT_PHONE_NUMBER = "1234567890";
     private final String CONTACT_EMAIL = "jdoe@email.com";
 
     @Mock
