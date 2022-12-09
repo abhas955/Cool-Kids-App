@@ -1,5 +1,9 @@
 package com.coolkids.coolKidsApp.controllers;
 
+
+import com.coolkids.coolKidsApp.api.v1.mapper.EventMapper;
+import com.coolkids.coolKidsApp.api.v1.mapper.UserMapper;
+
 import com.coolkids.coolKidsApp.api.v1.model.UserDTO;
 import com.coolkids.coolKidsApp.domain.Event;
 import com.coolkids.coolKidsApp.domain.User;
@@ -12,7 +16,9 @@ import com.coolkids.coolKidsApp.security.services.UserDetailsImpl;
 import com.coolkids.coolKidsApp.security.services.UserDetailsServiceImpl;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.repository.query.Param;
+
+import org.springframework.http.HttpHeaders;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -44,19 +50,23 @@ public class TestController {
 	@Autowired
 	EventRepository eventRepository;
 
+	@Autowired
+	UserMapper userMapper;
+
 
 	@GetMapping("/all")
 	public String allAccess() {
 		return "Public Content.";
 	}
-	
+	//Todo: User profile
 	@GetMapping("/user")
 	@PreAuthorize("hasAuthority('USER') or hasAuthority('ADMIN')")
-	public ResponseEntity<?> userAccess(Authentication authentication) {
+	public ResponseEntity<UserDTO> userProfile(Authentication authentication) {
+		String insessionUserName = authentication.getName();
+		User userInSession = userRepository.findByUsername(insessionUserName).
+				orElseThrow(() -> new UsernameNotFoundException("No user logged in!"));
+		return new ResponseEntity<UserDTO>(userMapper.userToUserDTO(userInSession), HttpStatus.OK);
 
-		String name = authentication.getName();
-		return ResponseEntity.ok()
-				.body(userRepository.findByUsername(name));
 	}
 
 
@@ -73,7 +83,8 @@ public class TestController {
 	}
 
 
-    //Todo: replace a user (put request ) (not sure if this will be needed)
+    //Todo: add a profile picture (put request ) (not sure if this will be needed)
+
 
     //Todo: sign up for an event/RSVP
 	@PostMapping("/addEvent")
