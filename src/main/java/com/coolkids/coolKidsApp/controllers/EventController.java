@@ -2,9 +2,13 @@ package com.coolkids.coolKidsApp.controllers;
 
 import com.coolkids.coolKidsApp.api.v1.model.EventDTO;
 import com.coolkids.coolKidsApp.api.v1.model.EventListDTO;
+import com.coolkids.coolKidsApp.domain.Event;
+import com.coolkids.coolKidsApp.repository.EventRepository;
 import com.coolkids.coolKidsApp.services.eventServices.EventService;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.http.HttpStatus;
@@ -17,6 +21,9 @@ import org.springframework.web.bind.annotation.*;
 public class EventController {
 
     public static final String BASE_URL = "/api/v1/events";
+
+    @Autowired
+    EventRepository eventRepository;
 
     private final EventService eventService;
 
@@ -74,5 +81,11 @@ public class EventController {
     }
 
     //Todo: get current number of rsvps
+    @GetMapping("/rsvps")
+    @PreAuthorize("hasAuthority('ADMIN') or hasAuthority('USER')")
+    public ResponseEntity<Integer> rsvpdUserCount(String title){
+        Event event = eventRepository.findEventByEventTitle(title).orElseThrow(() -> new UsernameNotFoundException("Event not found"));
+        return new ResponseEntity<Integer>(event.getRsvps(), HttpStatus.OK);
+    }
 
 }

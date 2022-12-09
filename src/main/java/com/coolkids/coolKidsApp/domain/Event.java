@@ -21,7 +21,7 @@ import java.util.Set;
 public class Event {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     @Column(name = "eventStartDateTime")
     private String eventStartDateTime;
@@ -59,6 +59,12 @@ public class Event {
     mappedBy = "eventRsvps")
     @JsonIgnore
     private Set<User> userSetRsvps = new HashSet<>();
+
+
+
+    public Integer getRsvps(){
+        return this.userSetRsvps.size();
+    }
 
 }
 
