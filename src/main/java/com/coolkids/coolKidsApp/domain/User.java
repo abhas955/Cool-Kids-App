@@ -1,5 +1,8 @@
 package com.coolkids.coolKidsApp.domain;
 
+import com.coolkids.coolKidsApp.api.v1.mapper.EventMapper;
+import com.coolkids.coolKidsApp.api.v1.model.EventDTO;
+import com.coolkids.coolKidsApp.api.v1.model.EventListDTO;
 import lombok.*;
 import org.springframework.data.mongodb.core.index.IndexDirection;
 import org.springframework.data.mongodb.core.index.Indexed;
@@ -16,7 +19,8 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import java.time.LocalDate;
 import java.util.*;
-
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 
 @Getter
@@ -28,6 +32,7 @@ import java.util.*;
                 @UniqueConstraint(columnNames = "username"),
                 @UniqueConstraint(columnNames = "email")
         })
+
 public class User{
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -97,6 +102,25 @@ public class User{
                 }
     }
 
+    public Integer getEventsRsvpd(){
+        return this.eventRsvps.size();
+    }
+
+
+
+
+//    public <T> List<T> convertSetToList(Set<T> set)
+//    {
+//        // create an empty list
+//        List<T> list = new ArrayList<>();
+//
+//        // push each element in the set into the list
+//        for (T t : set)
+//            list.add(t);
+//
+//        // return the list
+//        return list;
+//    }
 
 
 

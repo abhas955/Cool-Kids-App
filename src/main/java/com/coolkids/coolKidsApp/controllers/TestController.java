@@ -31,12 +31,15 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.websocket.Session;
 import java.security.Principal;
+import java.util.List;
+import java.util.Set;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 @RequestMapping("/api/test")
 @AllArgsConstructor
 public class TestController {
+	public static final String BASE_URL = "/api/test/users";
 
 
 	private final UserDetailsServiceImpl userDetailsServiceImpl;
@@ -53,11 +56,15 @@ public class TestController {
 	@Autowired
 	UserMapper userMapper;
 
+	@Autowired
+	UserDetailsServiceImpl userDetailsService;
+
 
 	@GetMapping("/all")
 	public String allAccess() {
 		return "Public Content.";
 	}
+	//Todo: return user in session
 	//Todo: User profile
 	@GetMapping("/user")
 	@PreAuthorize("hasAuthority('USER') or hasAuthority('ADMIN')")
@@ -108,21 +115,61 @@ public class TestController {
 
 	}
 
-	//Todo: remove event/unrsvp
+	//Todo: patch user
+	@PatchMapping({"/patchUser"})
+	@PreAuthorize("hasAuthority('ADMIN') or hasAuthority('USER')")
+	public ResponseEntity<UserDTO> patchUser(Authentication authentication, @RequestBody UserDTO userDTO){
+		String username = authentication.getName();
+		User user = userRepository.findByUsername(username).orElseThrow(() -> new UsernameNotFoundException("User not in session"));
+		Long id = user.getId();
+		return new ResponseEntity<UserDTO>(userDetailsService.patchUser(id, userDTO),HttpStatus.OK);
+	}
 
-    //Todo: get events that a user signed up for
+	//Todo: remove event/unrsvp
+	@PostMapping("/removeEvent")
+	@PreAuthorize("hasAuthority('USER') or hasAuthority('ADMIN')")
+	public ResponseEntity<?> removeEventByTitle(@RequestBody String eventTitle, Authentication authentication){
+
+
+		String name = authentication.getName();
+		User user1 = (User) userRepository.findByUsername(name).
+				map(user -> {
+					Event event = eventRepository.findEventByEventTitle(eventTitle).
+							orElseThrow(() -> new UsernameNotFoundException("Event not found with title: "+eventTitle));
+					if(user.getEventRsvps().contains(event)){
+						user.removeEvent(event.getId());
+						userRepository.save(user);
+					}
+
+
+					return user;
+				}).
+				orElseThrow(() -> new UsernameNotFoundException("User not found: "));
+
+		return ResponseEntity.ok(new MessageResponse("Event removed successfully!"));
+
+
+	}
+
+
+
+    //Todo: get number of events that a user signed up for
+	@GetMapping("/eventsRsvpd")
+	public ResponseEntity<Integer> eventsRsvpd(Authentication authentication){
+		User user = userRepository.findByUsername(authentication.getName()).orElseThrow(() -> new UsernameNotFoundException("User not in session"));
+		return new ResponseEntity<Integer>(user.getEventsRsvpd(),HttpStatus.OK);
+	}
+
+
 	
 	@PutMapping({"/user/{id}"})
 	public ResponseEntity<UserDTO> updateUser(@PathVariable Long id, @RequestBody UserDTO userDTO) {
 		return new ResponseEntity<UserDTO>(userDetailsServiceImpl.saveUserByDTO(id, userDTO), HttpStatus.OK);
 	}
 
-	@PatchMapping({"/user/{id}"})
-	public ResponseEntity<UserDTO> patchUser(@PathVariable Long id, @RequestBody UserDTO userDTO) {
-		return new ResponseEntity<UserDTO>(userDetailsServiceImpl.patchUser(id, userDTO), HttpStatus.OK);
-	}
 
-	//Todo: return user in session
+
+
 
 
 
