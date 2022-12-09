@@ -81,9 +81,9 @@ public class EventController {
     }
 
     //Todo: get current number of rsvps
-    @GetMapping("/rsvps")
+    @GetMapping("/rsvps/{title}")
     @PreAuthorize("hasAuthority('ADMIN') or hasAuthority('USER')")
-    public ResponseEntity<Integer> rsvpdUserCount(String title){
+    public ResponseEntity<Integer> rsvpdUserCount(@PathVariable String title){
         Event event = eventRepository.findEventByEventTitle(title).orElseThrow(() -> new UsernameNotFoundException("Event not found"));
         return new ResponseEntity<Integer>(event.getRsvps(), HttpStatus.OK);
     }

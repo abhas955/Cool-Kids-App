@@ -77,11 +77,7 @@ public class TestController {
 	}
 
 
-//	@GetMapping("/mod")
-//	@PreAuthorize("hasRole('MODERATOR')")
-//	public String moderatorAccess() {
-//		return "Moderator Board.";
-//	}
+
 
 	@GetMapping("/admin")
 	@PreAuthorize("hasAuthority('ADMIN')")
@@ -90,13 +86,13 @@ public class TestController {
 	}
 
 
-    //Todo: add a profile picture (put request ) (not sure if this will be needed)
+    //Todo: add a profile picture (put request ) (not sure if this will be needed as we have the patch request that can also perform this task)
 
 
     //Todo: sign up for an event/RSVP
-	@PostMapping("/addEvent")
+	@PostMapping("/addEvent/{eventTitle}")
 	@PreAuthorize("hasAuthority('USER') or hasAuthority('ADMIN')")
-	public ResponseEntity<?> addEventbyTitle(@RequestBody String eventTitle, Authentication authentication){
+	public ResponseEntity<?> addEventbyTitle(@PathVariable String eventTitle, Authentication authentication){
 
 
 		String name = authentication.getName();
